@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:26:34.481+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-14T12:15:06.765+05:30[Asia/Kolkata]")
 
 @Api(value = "AddressLineResource", description = "the AddressLineResource API")
 public interface AddressLineResourceApi {

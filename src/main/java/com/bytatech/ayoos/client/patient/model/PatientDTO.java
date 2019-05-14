@@ -9,12 +9,12 @@ import java.util.Date;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.time.LocalDate;
+
 /**
  * PatientDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:26:34.481+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-14T12:15:06.765+05:30[Asia/Kolkata]")
 
 public class PatientDTO   {
   @JsonProperty("createdDate")
@@ -31,6 +31,12 @@ public class PatientDTO   {
 
   @JsonProperty("id")
   private Long id = null;
+
+  @JsonProperty("image")
+  private byte[] image = null;
+
+  @JsonProperty("imageContentType")
+  private String imageContentType = null;
 
   @JsonProperty("location")
   private String location = null;
@@ -143,6 +149,46 @@ public class PatientDTO   {
     this.id = id;
   }
 
+  public PatientDTO image(byte[] image) {
+    this.image = image;
+    return this;
+  }
+
+  /**
+   * Get image
+   * @return image
+  **/
+  @ApiModelProperty(value = "")
+
+@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
+  public byte[] getImage() {
+    return image;
+  }
+
+  public void setImage(byte[] image) {
+    this.image = image;
+  }
+
+  public PatientDTO imageContentType(String imageContentType) {
+    this.imageContentType = imageContentType;
+    return this;
+  }
+
+  /**
+   * Get imageContentType
+   * @return imageContentType
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getImageContentType() {
+    return imageContentType;
+  }
+
+  public void setImageContentType(String imageContentType) {
+    this.imageContentType = imageContentType;
+  }
+
   public PatientDTO location(String location) {
     this.location = location;
     return this;
@@ -218,6 +264,8 @@ public class PatientDTO   {
         Objects.equals(this.dob, patientDTO.dob) &&
         Objects.equals(this.gender, patientDTO.gender) &&
         Objects.equals(this.id, patientDTO.id) &&
+        Objects.equals(this.image, patientDTO.image) &&
+        Objects.equals(this.imageContentType, patientDTO.imageContentType) &&
         Objects.equals(this.location, patientDTO.location) &&
         Objects.equals(this.patientCode, patientDTO.patientCode) &&
         Objects.equals(this.phoneNumber, patientDTO.phoneNumber);
@@ -225,7 +273,7 @@ public class PatientDTO   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(createdDate, dmsId, dob, gender, id, location, patientCode, phoneNumber);
+    return Objects.hash(createdDate, dmsId, dob, gender, id, image, imageContentType, location, patientCode, phoneNumber);
   }
 
   @Override
@@ -238,6 +286,8 @@ public class PatientDTO   {
     sb.append("    dob: ").append(toIndentedString(dob)).append("\n");
     sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    image: ").append(toIndentedString(image)).append("\n");
+    sb.append("    imageContentType: ").append(toIndentedString(imageContentType)).append("\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("    patientCode: ").append(toIndentedString(patientCode)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
