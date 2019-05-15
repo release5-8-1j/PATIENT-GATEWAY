@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.Distance;
@@ -29,6 +31,7 @@ import com.bytatech.ayoos.client.patient.model.PatientDTO;
 import com.bytatech.ayoos.service.QueryService;
 
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/api")
@@ -89,10 +92,8 @@ public class QueryResource {
 	}
 
 	@GetMapping("/slot/{date}/{doctorId}")
-	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@PathVariable LocalDate date, @PathVariable Long doctorId,
-			@RequestParam(value = "page") Integer page, @RequestParam(value = "size") Integer size,
-			@RequestParam(value = "sort") ArrayList<String> sort) {
-		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId, page, size, sort);
+	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@PathVariable LocalDate date, @PathVariable Long doctorId) {
+		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId);
 	}
 
 	@GetMapping("/address-linesByPatientId/{patientId}")
