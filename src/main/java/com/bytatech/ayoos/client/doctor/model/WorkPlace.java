@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.GeoPointField;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -29,6 +30,7 @@ public class WorkPlace   {
   private Long id = null;
 
   @JsonProperty("location")
+  @GeoPointField
   private String location = null;
 
   @JsonProperty("name")
