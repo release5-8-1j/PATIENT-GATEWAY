@@ -95,7 +95,7 @@ public class QueryResource {
 		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId, page, size, sort);
 	}
 
-	@GetMapping("/address-lines/{patientId}")
+	@GetMapping("/address-linesByPatientId/{patientId}")
 	public ResponseEntity<List<AddressLineDTO>> getAllAddressLinesByPatientId(@PathVariable("patientId") Long patientId) {
 		return addressLineResourceApi.getAllAddressLinesByPatientIdUsingGET(patientId);
 
