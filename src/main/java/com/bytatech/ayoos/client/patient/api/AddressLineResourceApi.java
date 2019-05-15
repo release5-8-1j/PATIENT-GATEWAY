@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-14T12:15:06.765+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-15T13:42:07.174+05:30[Asia/Kolkata]")
 
 @Api(value = "AddressLineResource", description = "the AddressLineResource API")
 public interface AddressLineResourceApi {
@@ -65,6 +65,18 @@ public interface AddressLineResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<AddressLineDTO> getAddressLineUsingGET(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
+
+
+    @ApiOperation(value = "getAllAddressLinesByPatientId", nickname = "getAllAddressLinesByPatientIdUsingGET", notes = "", response = AddressLineDTO.class, responseContainer = "List", tags={ "address-line-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = AddressLineDTO.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/address-lines/{patientId}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<List<AddressLineDTO>> getAllAddressLinesByPatientIdUsingGET(@ApiParam(value = "patientId",required=true) @PathVariable("patientId") Long patientId);
 
 
     @ApiOperation(value = "getAllAddressLines", nickname = "getAllAddressLinesUsingGET", notes = "", response = AddressLineDTO.class, responseContainer = "List", tags={ "address-line-resource", })

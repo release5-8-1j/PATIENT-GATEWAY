@@ -1,6 +1,7 @@
 package com.bytatech.ayoos.client.patient.model;
 
 import java.util.Objects;
+import com.bytatech.ayoos.client.patient.model.Patient;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
@@ -10,12 +11,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * AddressLineDTO
+ * AddressLine
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-15T13:42:07.174+05:30[Asia/Kolkata]")
 
-public class AddressLineDTO   {
+public class AddressLine   {
   @JsonProperty("city")
   private String city = null;
 
@@ -28,8 +29,8 @@ public class AddressLineDTO   {
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("patientId")
-  private Long patientId = null;
+  @JsonProperty("patient")
+  private Patient patient = null;
 
   @JsonProperty("state")
   private String state = null;
@@ -37,7 +38,7 @@ public class AddressLineDTO   {
   @JsonProperty("zipCode")
   private String zipCode = null;
 
-  public AddressLineDTO city(String city) {
+  public AddressLine city(String city) {
     this.city = city;
     return this;
   }
@@ -57,7 +58,7 @@ public class AddressLineDTO   {
     this.city = city;
   }
 
-  public AddressLineDTO country(String country) {
+  public AddressLine country(String country) {
     this.country = country;
     return this;
   }
@@ -77,7 +78,7 @@ public class AddressLineDTO   {
     this.country = country;
   }
 
-  public AddressLineDTO district(String district) {
+  public AddressLine district(String district) {
     this.district = district;
     return this;
   }
@@ -97,7 +98,7 @@ public class AddressLineDTO   {
     this.district = district;
   }
 
-  public AddressLineDTO id(Long id) {
+  public AddressLine id(Long id) {
     this.id = id;
     return this;
   }
@@ -117,27 +118,28 @@ public class AddressLineDTO   {
     this.id = id;
   }
 
-  public AddressLineDTO patientId(Long patientId) {
-    this.patientId = patientId;
+  public AddressLine patient(Patient patient) {
+    this.patient = patient;
     return this;
   }
 
   /**
-   * Get patientId
-   * @return patientId
+   * Get patient
+   * @return patient
   **/
   @ApiModelProperty(value = "")
 
+  @Valid
 
-  public Long getPatientId() {
-    return patientId;
+  public Patient getPatient() {
+    return patient;
   }
 
-  public void setPatientId(Long patientId) {
-    this.patientId = patientId;
+  public void setPatient(Patient patient) {
+    this.patient = patient;
   }
 
-  public AddressLineDTO state(String state) {
+  public AddressLine state(String state) {
     this.state = state;
     return this;
   }
@@ -157,7 +159,7 @@ public class AddressLineDTO   {
     this.state = state;
   }
 
-  public AddressLineDTO zipCode(String zipCode) {
+  public AddressLine zipCode(String zipCode) {
     this.zipCode = zipCode;
     return this;
   }
@@ -186,31 +188,31 @@ public class AddressLineDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddressLineDTO addressLineDTO = (AddressLineDTO) o;
-    return Objects.equals(this.city, addressLineDTO.city) &&
-        Objects.equals(this.country, addressLineDTO.country) &&
-        Objects.equals(this.district, addressLineDTO.district) &&
-        Objects.equals(this.id, addressLineDTO.id) &&
-        Objects.equals(this.patientId, addressLineDTO.patientId) &&
-        Objects.equals(this.state, addressLineDTO.state) &&
-        Objects.equals(this.zipCode, addressLineDTO.zipCode);
+    AddressLine addressLine = (AddressLine) o;
+    return Objects.equals(this.city, addressLine.city) &&
+        Objects.equals(this.country, addressLine.country) &&
+        Objects.equals(this.district, addressLine.district) &&
+        Objects.equals(this.id, addressLine.id) &&
+        Objects.equals(this.patient, addressLine.patient) &&
+        Objects.equals(this.state, addressLine.state) &&
+        Objects.equals(this.zipCode, addressLine.zipCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(city, country, district, id, patientId, state, zipCode);
+    return Objects.hash(city, country, district, id, patient, state, zipCode);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddressLineDTO {\n");
+    sb.append("class AddressLine {\n");
     
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    district: ").append(toIndentedString(district)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    patientId: ").append(toIndentedString(patientId)).append("\n");
+    sb.append("    patient: ").append(toIndentedString(patient)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    zipCode: ").append(toIndentedString(zipCode)).append("\n");
     sb.append("}");

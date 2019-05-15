@@ -1,6 +1,8 @@
 package com.bytatech.ayoos.web.rest;
 import com.bytatech.ayoos.client.doctor.model.*;
+
 import com.bytatech.ayoos.client.patient.api.CommandResourceApi;
+import com.bytatech.ayoos.client.patient.api.PatientResourceApi;
 import com.bytatech.ayoos.client.patient.model.*;
 
 
@@ -24,6 +26,9 @@ public class CommandResource {
 	
 	@Autowired
   ReviewResourceApi reviewResourceApi;
+	
+	@Autowired
+	PatientResourceApi patientResourceApi;
 	
 	
 	@PostMapping("/rating")
@@ -57,11 +62,11 @@ public class CommandResource {
 		return commandResourceApi.updateAddressLineUsingPUT1(addressLineDTO);
 	}
 	
-	
-	
-	
-	
-	
+	@PostMapping("/patients/modelToDto")
+	public ResponseEntity<PatientDTO> modelToDto(@RequestBody Patient patient){
+		return patientResourceApi.modelToDtoUsingPOST(patient);
+		
+	}
 	
 
 }
