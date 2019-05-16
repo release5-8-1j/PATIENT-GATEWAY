@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,9 +69,9 @@ public class QueryResource {
 
 	@GetMapping("/findByLocationWithin")
 	public ResponseEntity<List<Doctor>> searchByLocation(@RequestParam("location") Double[] location,
-			@RequestParam("distance") Distance distance, Pageable pageable) {
+			@RequestParam("distance") Double distance, Pageable pageable) {
 		Point point = new Point(location[0], location[1]);
-		return ResponseEntity.ok().body(queryService.findByLocationWithin(point, distance, pageable).getContent());
+		return ResponseEntity.ok().body(queryService.findByLocationWithin(point, new Distance(distance,Metrics.KILOMETERS), pageable).getContent());
 	}
 
 	@GetMapping("/findReviewByDoctorId/{doctorId}")
@@ -98,27 +99,11 @@ public class QueryResource {
 		return ResponseUtil.wrapOrNotFound(doctor);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	@GetMapping("/slot/{date}/{doctorId}")
 	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@PathVariable LocalDate date, @PathVariable Long doctorId) {
 		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId);
 	}
 	
-	
-	
-	
-	
-	
-
 	@GetMapping("/address-linesByPatientId/{patientId}")
 	public ResponseEntity<List<AddressLineDTO>> getAllAddressLinesByPatientId(@PathVariable("patientId") Long patientId) {
 		return addressLineResourceApi.getAllAddressLinesByPatientIdUsingGET(patientId);
