@@ -12,6 +12,8 @@ import com.bytatech.ayoos.client.doctor.model.ReservedSlotDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.annotations.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +61,7 @@ public interface ReservedSlotResourceApi {
     @RequestMapping(value = "/api/slot",
         produces = "*/*", 
         method = RequestMethod.POST)
-    ResponseEntity<List<ReservedSlotDTO>> createSlotUsingPOST(@ApiParam(value = "date",required=true) @RequestParam(value = "date", required =true)/*@PathVariable("date")*/  LocalDate date,@ApiParam(value = "doctorId",required=true) @RequestParam(value = "doctor", required =true)/*@PathVariable("doctorId")*/ Long doctorId);
+    ResponseEntity<List<ReservedSlotDTO>> createSlotUsingPOST(@ApiParam(value = "date",required=true) @RequestParam(value = "date", required =true)/*@PathVariable("date")*/ @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,@ApiParam(value = "doctorId",required=true) @RequestParam(value = "doctor", required =true)/*@PathVariable("doctorId")*/ Long doctorId);
 
 
     @ApiOperation(value = "deleteReservedSlot", nickname = "deleteReservedSlotUsingDELETE", notes = "", tags={ "reserved-slot-resource", })
