@@ -35,6 +35,8 @@ public interface QueryService {
 	public Page<Doctor> findDoctors(String searchTerm,Pageable pageable);
 
 	public Optional<Patient> findPatient(String patientCode);
+
+	public  Optional<Doctor> findDoctorByDoctorId(String doctorId);
 	
 	
 	

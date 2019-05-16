@@ -83,6 +83,23 @@ public class QueryResource {
 		Optional<Patient> patient = queryService.findPatient(patientCode);
 		return ResponseUtil.wrapOrNotFound(patient);
 	}
+	
+
+	@GetMapping("/doctors/{doctorId}")
+	public ResponseEntity<Doctor> findDoctorByDoctorId(@PathVariable String doctorId) {
+		Optional<Doctor> doctor = queryService.findDoctorByDoctorId(doctorId);
+		return ResponseUtil.wrapOrNotFound(doctor);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@GetMapping("/slot/{date}/{doctorId}")
 	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@PathVariable LocalDate date, @PathVariable Long doctorId,
@@ -90,5 +107,11 @@ public class QueryResource {
 			@RequestParam(value = "sort") ArrayList<String> sort) {
 		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId, page, size, sort);
 	}
+	
+	
+	
+	
+	
+	
 
 }

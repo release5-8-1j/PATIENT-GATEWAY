@@ -21,6 +21,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+
 import com.bytatech.ayoos.client.doctor.model.*;
 
 import com.bytatech.ayoos.client.domain.*;
@@ -41,15 +43,16 @@ import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
 import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
+
 /**
- * Service Implementation for managing Doctor.
+ * Query Service Implementation
  */
 @Service
 @Transactional
 public class QueryServiceImpl implements QueryService {
 
-    private final Logger log = LoggerFactory.getLogger(QueryServiceImpl.class);
-    private final JestClient jestClient;
+	private final Logger log = LoggerFactory.getLogger(QueryServiceImpl.class);
+	private final JestClient jestClient;
 	private final JestElasticsearchTemplate elasticsearchTemplate;
 
 	public QueryServiceImpl(JestClient jestClient) {
@@ -57,111 +60,95 @@ public class QueryServiceImpl implements QueryService {
 		this.elasticsearchTemplate = new JestElasticsearchTemplate(this.jestClient);
 	}
 
-  
-
-    @Autowired
+	@Autowired
 	ElasticsearchOperations elasticsearchOperations;
 
 	@Override
-	public  Page<Doctor> findAllDoctors(Pageable pageable) {
-		SearchQuery searchQuery = new NativeSearchQueryBuilder()
-				  .withQuery(matchAllQuery())
-				  .build();
+	public Page<Doctor> findAllDoctors(Pageable pageable) {
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchAllQuery()).build();
 
-		return  elasticsearchOperations.queryForPage(searchQuery,Doctor.class);
+		return elasticsearchOperations.queryForPage(searchQuery, Doctor.class);
 
-	
-	} 
-	
-	/*@Override
-	public Doctor findDoctor(String searchTerm) {
-		
-		StringQuery stringQuery = new StringQuery(matchQuery("doctorId", searchTerm).toString());
-		return elasticsearchOperations.queryForObject(stringQuery, Doctor.class);
-	}*/
+	}
+
+	@Override
+	public Optional<Doctor> findDoctorByDoctorId(String doctorId) {
+
+		StringQuery stringQuery = new StringQuery(termQuery("doctorId", doctorId).toString());
+		return Optional.of( elasticsearchOperations.queryForObject(stringQuery, Doctor.class));
+	}
+
 	@Override
 	public List<String> findAllQualifications(Pageable pageable) {
 		List<String> qualificationList = new ArrayList<String>();
-		SearchQuery searchQuery = new NativeSearchQueryBuilder()
-				  .withQuery(matchAllQuery())
-				  .withSearchType(QUERY_THEN_FETCH)
-				  .withIndices("qualification").withTypes("qualification")
-				  .addAggregation(AggregationBuilders.terms("distinct_qualification").field("qualification.keyword"))
-				  .build();
-	
-		
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchAllQuery())
+				.withSearchType(QUERY_THEN_FETCH).withIndices("qualification").withTypes("qualification")
+				.addAggregation(AggregationBuilders.terms("distinct_qualification").field("qualification.keyword"))
+				.build();
+
 		AggregatedPage<Qualification> result = elasticsearchTemplate.queryForPage(searchQuery, Qualification.class);
 		TermsAggregation subjectAgg = result.getAggregation("distinct_qualification", TermsAggregation.class);
-		//System.out.println(">>>>>>>>>>>>>"+subjectAgg.getBuckets().get(0).getKey());
-		
-		
-	List<Entry>  bucket=	subjectAgg.getBuckets();
+		// System.out.println(">>>>>>>>>>>>>"+subjectAgg.getBuckets().get(0).getKey());
 
-	for (int i=0;i<subjectAgg.getBuckets().size();i++)
-	{
-		qualificationList.add(subjectAgg.getBuckets().get(i).getKey());
-	}
-		/*for(Entry b : bucket) {
-			System.out.println(">>>>>>>>>>>>>"+b.getKey());
-		}*/
-		
-		
+		List<Entry> bucket = subjectAgg.getBuckets();
+
+		for (int i = 0; i < subjectAgg.getBuckets().size(); i++) {
+			qualificationList.add(subjectAgg.getBuckets().get(i).getKey());
+		}
+		/*
+		 * for(Entry b : bucket) { System.out.println(">>>>>>>>>>>>>"+b.getKey()); }
+		 */
+
 		return qualificationList;
-		
-		
-		
+
 	}
+
 	@Override
-	public Page<Doctor> facetSearch(String specialization,Double ratings,Double feeFrom,Double feeTo,Pageable pageable){
-		
+	public Page<Doctor> facetSearch(String specialization, Double ratings, Double feeFrom, Double feeTo,
+			Pageable pageable) {
+
 		List<QueryBuilders> queryList = new ArrayList<QueryBuilders>();
-		//QueryBuilders.matchQuery("specialization", specialization);
-		//queryList.add(	QueryBuilders.matchQuery("totalRatings", ratings));
-		//queryList.add(	QueryBuilders.rangeQuery("fees").gte("feeFrom").lte("feeTo"));
-		//queryList.add(	QueryBuilders.matchQuery("workplace.name", workplaceName));
-	
-		
+		// QueryBuilders.matchQuery("specialization", specialization);
+		// queryList.add( QueryBuilders.matchQuery("totalRatings", ratings));
+		// queryList.add( QueryBuilders.rangeQuery("fees").gte("feeFrom").lte("feeTo"));
+		// queryList.add( QueryBuilders.matchQuery("workplace.name", workplaceName));
+
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchAllQuery())
-	
-			.withFilter(QueryBuilders.boolQuery()
-					.should(QueryBuilders.matchQuery("specialization", specialization))
-					.should(QueryBuilders.matchQuery("totalRatings", ratings))
-					.should(QueryBuilders.rangeQuery("paymentSettings.amount").gte("fr").lte("to"))
-					/*.should(QueryBuilders.matchQuery("workplace.name", workplaceName))*/).build();
-	return elasticsearchOperations.queryForPage(searchQuery,Doctor.class);
+
+				.withFilter(QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("specialization", specialization))
+						.should(QueryBuilders.matchQuery("totalRatings", ratings))
+						.should(QueryBuilders.rangeQuery("paymentSettings.amount").gte("fr").lte("to"))
+				/* .should(QueryBuilders.matchQuery("workplace.name", workplaceName)) */).build();
+		return elasticsearchOperations.queryForPage(searchQuery, Doctor.class);
 	}
-	
-	
+
 	@Override
 	public Page<Doctor> findByLocationWithin(Point point, Distance distance, Pageable pageable) {
 		return elasticsearchTemplate.queryForPage(getGeoQuery(point, distance, pageable), Doctor.class);
 	}
 
 	private CriteriaQuery getGeoQuery(Point point, Distance distance, Pageable pageable) {
-		return new CriteriaQuery(
-				new Criteria("location").within(point, distance),
-				pageable
-		);
+		return new CriteriaQuery(new Criteria("location").within(point, distance), pageable);
 	}
 
 	@Override
 	public Page<Review> findReviewByDoctorId(String doctorId, Pageable pageable) {
-		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery("doctor.doctorId",doctorId))
-		  .build();
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery("doctor.doctorId", doctorId))
+				.build();
 
-return  elasticsearchOperations.queryForPage(searchQuery,Review.class);
+		return elasticsearchOperations.queryForPage(searchQuery, Review.class);
 
 	}
-	
+
 	@Override
-	  public Page<Doctor> findDoctors(String searchTerm,Pageable pageable) {
-		  SearchQuery searchQuery = new NativeSearchQueryBuilder()
-					.withQuery(QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("doctorId", searchTerm))
-							.should(QueryBuilders.matchQuery("specialization",  searchTerm)))
-					.build();
-		    
-	        return elasticsearchOperations.queryForPage(searchQuery, Doctor.class);
-	    }
+	public Page<Doctor> findDoctors(String searchTerm, Pageable pageable) {
+		SearchQuery searchQuery = new NativeSearchQueryBuilder()
+				.withQuery(QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("doctorId", searchTerm))
+						.should(QueryBuilders.matchQuery("specialization", searchTerm)))
+				.build();
+
+		return elasticsearchOperations.queryForPage(searchQuery, Doctor.class);
+	}
 
 	@Override
 	public Optional<Patient> findPatient(String patientCode) {
@@ -169,10 +156,4 @@ return  elasticsearchOperations.queryForPage(searchQuery,Review.class);
 		return Optional.of(elasticsearchOperations.queryForObject(stringQuery, Patient.class));
 	}
 
-	
-		
-	
-		
-		
-	
 }
