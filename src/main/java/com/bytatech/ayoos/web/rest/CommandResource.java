@@ -1,4 +1,6 @@
 package com.bytatech.ayoos.web.rest;
+import com.bytatech.ayoos.client.appointment.api.*;
+
 import com.bytatech.ayoos.client.doctor.model.*;
 import com.bytatech.ayoos.client.patient.api.CommandResourceApi;
 import com.bytatech.ayoos.client.patient.model.*;
@@ -15,6 +17,10 @@ import com.bytatech.ayoos.client.doctor.api.*;
 @RestController
 @RequestMapping("/api")
 public class CommandResource {
+	
+	@Autowired
+	AppointmentCommandResourceApi AppointmentCommandResourceApi;
+	
 	
 	@Autowired
 	CommandResourceApi commandResourceApi;
