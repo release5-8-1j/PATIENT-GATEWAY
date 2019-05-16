@@ -1,24 +1,33 @@
 package com.bytatech.ayoos.client.patient.model;
 
 import java.util.Objects;
+import com.bytatech.ayoos.client.patient.model.AddressLine;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * PatientDTO
+ * Patient
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-15T13:42:07.174+05:30[Asia/Kolkata]")
+@Document(indexName="patient")
+public class Patient   {
+  @JsonProperty("addressLines")
+  @Valid
+  private List<AddressLine> addressLines = null;
 
-public class PatientDTO   {
   @JsonProperty("createdDate")
   private LocalDate createdDate = null;
 
@@ -49,7 +58,36 @@ public class PatientDTO   {
   @JsonProperty("phoneNumber")
   private Long phoneNumber = null;
 
-  public PatientDTO createdDate(LocalDate createdDate) {
+  public Patient addressLines(List<AddressLine> addressLines) {
+    this.addressLines = addressLines;
+    return this;
+  }
+
+  public Patient addAddressLinesItem(AddressLine addressLinesItem) {
+    if (this.addressLines == null) {
+      this.addressLines = new ArrayList<AddressLine>();
+    }
+    this.addressLines.add(addressLinesItem);
+    return this;
+  }
+
+  /**
+   * Get addressLines
+   * @return addressLines
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public List<AddressLine> getAddressLines() {
+    return addressLines;
+  }
+
+  public void setAddressLines(List<AddressLine> addressLines) {
+    this.addressLines = addressLines;
+  }
+
+  public Patient createdDate(LocalDate createdDate) {
     this.createdDate = createdDate;
     return this;
   }
@@ -70,7 +108,7 @@ public class PatientDTO   {
     this.createdDate = createdDate;
   }
 
-  public PatientDTO dmsId(String dmsId) {
+  public Patient dmsId(String dmsId) {
     this.dmsId = dmsId;
     return this;
   }
@@ -90,7 +128,7 @@ public class PatientDTO   {
     this.dmsId = dmsId;
   }
 
-  public PatientDTO dob(LocalDate dob) {
+  public Patient dob(LocalDate dob) {
     this.dob = dob;
     return this;
   }
@@ -111,7 +149,7 @@ public class PatientDTO   {
     this.dob = dob;
   }
 
-  public PatientDTO gender(String gender) {
+  public Patient gender(String gender) {
     this.gender = gender;
     return this;
   }
@@ -131,7 +169,7 @@ public class PatientDTO   {
     this.gender = gender;
   }
 
-  public PatientDTO id(Long id) {
+  public Patient id(Long id) {
     this.id = id;
     return this;
   }
@@ -151,7 +189,7 @@ public class PatientDTO   {
     this.id = id;
   }
 
-  public PatientDTO image(byte[] image) {
+  public Patient image(byte[] image) {
     this.image = image;
     return this;
   }
@@ -171,7 +209,7 @@ public class PatientDTO   {
     this.image = image;
   }
 
-  public PatientDTO imageContentType(String imageContentType) {
+  public Patient imageContentType(String imageContentType) {
     this.imageContentType = imageContentType;
     return this;
   }
@@ -191,7 +229,7 @@ public class PatientDTO   {
     this.imageContentType = imageContentType;
   }
 
-  public PatientDTO location(String location) {
+  public Patient location(String location) {
     this.location = location;
     return this;
   }
@@ -211,7 +249,7 @@ public class PatientDTO   {
     this.location = location;
   }
 
-  public PatientDTO patientCode(String patientCode) {
+  public Patient patientCode(String patientCode) {
     this.patientCode = patientCode;
     return this;
   }
@@ -231,7 +269,7 @@ public class PatientDTO   {
     this.patientCode = patientCode;
   }
 
-  public PatientDTO phoneNumber(Long phoneNumber) {
+  public Patient phoneNumber(Long phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
@@ -260,29 +298,31 @@ public class PatientDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PatientDTO patientDTO = (PatientDTO) o;
-    return Objects.equals(this.createdDate, patientDTO.createdDate) &&
-        Objects.equals(this.dmsId, patientDTO.dmsId) &&
-        Objects.equals(this.dob, patientDTO.dob) &&
-        Objects.equals(this.gender, patientDTO.gender) &&
-        Objects.equals(this.id, patientDTO.id) &&
-        Objects.equals(this.image, patientDTO.image) &&
-        Objects.equals(this.imageContentType, patientDTO.imageContentType) &&
-        Objects.equals(this.location, patientDTO.location) &&
-        Objects.equals(this.patientCode, patientDTO.patientCode) &&
-        Objects.equals(this.phoneNumber, patientDTO.phoneNumber);
+    Patient patient = (Patient) o;
+    return Objects.equals(this.addressLines, patient.addressLines) &&
+        Objects.equals(this.createdDate, patient.createdDate) &&
+        Objects.equals(this.dmsId, patient.dmsId) &&
+        Objects.equals(this.dob, patient.dob) &&
+        Objects.equals(this.gender, patient.gender) &&
+        Objects.equals(this.id, patient.id) &&
+        Objects.equals(this.image, patient.image) &&
+        Objects.equals(this.imageContentType, patient.imageContentType) &&
+        Objects.equals(this.location, patient.location) &&
+        Objects.equals(this.patientCode, patient.patientCode) &&
+        Objects.equals(this.phoneNumber, patient.phoneNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createdDate, dmsId, dob, gender, id, image, imageContentType, location, patientCode, phoneNumber);
+    return Objects.hash(addressLines, createdDate, dmsId, dob, gender, id, image, imageContentType, location, patientCode, phoneNumber);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PatientDTO {\n");
+    sb.append("class Patient {\n");
     
+    sb.append("    addressLines: ").append(toIndentedString(addressLines)).append("\n");
     sb.append("    createdDate: ").append(toIndentedString(createdDate)).append("\n");
     sb.append("    dmsId: ").append(toIndentedString(dmsId)).append("\n");
     sb.append("    dob: ").append(toIndentedString(dob)).append("\n");

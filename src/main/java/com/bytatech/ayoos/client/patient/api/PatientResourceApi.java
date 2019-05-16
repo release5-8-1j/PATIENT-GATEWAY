@@ -5,6 +5,7 @@
  */
 package com.bytatech.ayoos.client.patient.api;
 
+import com.bytatech.ayoos.client.patient.model.Patient;
 import com.bytatech.ayoos.client.patient.model.PatientDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-14T12:15:06.765+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-15T13:42:07.174+05:30[Asia/Kolkata]")
 
 @Api(value = "PatientResource", description = "the PatientResource API")
 public interface PatientResourceApi {
@@ -77,6 +78,20 @@ public interface PatientResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<PatientDTO> getPatientUsingGET(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
+
+
+    @ApiOperation(value = "modelToDto", nickname = "modelToDtoUsingPOST", notes = "", response = PatientDTO.class, tags={ "patient-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = PatientDTO.class),
+        @ApiResponse(code = 201, message = "Created"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/patients/modelToDto",
+        produces = "*/*", 
+        consumes = "application/json",
+        method = RequestMethod.POST)
+    ResponseEntity<PatientDTO> modelToDtoUsingPOST(@ApiParam(value = "patient" ,required=true )  @Valid @RequestBody Patient patient);
 
 
     @ApiOperation(value = "searchPatients", nickname = "searchPatientsUsingGET", notes = "", response = PatientDTO.class, responseContainer = "List", tags={ "patient-resource", })
