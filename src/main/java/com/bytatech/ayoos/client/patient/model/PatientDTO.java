@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDate;
 import java.util.Date;
+
+import org.springframework.data.elasticsearch.annotations.GeoPointField;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -41,6 +43,7 @@ public class PatientDTO   {
   private String imageContentType = null;
 
   @JsonProperty("location")
+  @GeoPointField
   private String location = null;
 
   @JsonProperty("patientCode")
