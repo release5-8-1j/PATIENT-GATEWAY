@@ -27,7 +27,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:37:49.322+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T10:37:31.354+05:30[Asia/Kolkata]")
 
 @Api(value = "ReviewResource", description = "the ReviewResource API")
 public interface ReviewResourceApi {
@@ -67,6 +67,18 @@ public interface ReviewResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<List<ReviewDTO>> getAllReviewsUsingGET(@ApiParam(value = "Page number of the requested page") @Valid @RequestParam(value = "page", required = false) Integer page,@ApiParam(value = "Size of a page") @Valid @RequestParam(value = "size", required = false) Integer size,@ApiParam(value = "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.") @Valid @RequestParam(value = "sort", required = false) List<String> sort);
+
+
+    @ApiOperation(value = "getReviewByDoctorId", nickname = "getReviewByDoctorIdUsingGET", notes = "", response = ReviewDTO.class, responseContainer = "List", tags={ "review-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = ReviewDTO.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/review/findByDoctorId/{doctorId}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<List<ReviewDTO>> getReviewByDoctorIdUsingGET(@ApiParam(value = "doctorId",required=true) @PathVariable("doctorId") Long doctorId);
 
 
     @ApiOperation(value = "getReview", nickname = "getReviewUsingGET", notes = "", response = ReviewDTO.class, tags={ "review-resource", })

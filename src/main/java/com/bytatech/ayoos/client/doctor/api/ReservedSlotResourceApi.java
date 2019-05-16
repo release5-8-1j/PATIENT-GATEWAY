@@ -4,7 +4,6 @@
  * Do not edit the class manually.
  */
 package com.bytatech.ayoos.client.doctor.api;
-
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +28,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:37:49.322+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T10:37:31.354+05:30[Asia/Kolkata]")
 
 @Api(value = "ReservedSlotResource", description = "the ReservedSlotResource API")
 public interface ReservedSlotResourceApi {
@@ -58,7 +57,7 @@ public interface ReservedSlotResourceApi {
     @RequestMapping(value = "/api/slot/{date}/{doctorId}",
         produces = "*/*", 
         method = RequestMethod.POST)
-    ResponseEntity<List<ReservedSlotDTO>> createSlotUsingPOST(@ApiParam(value = "date",required=true) @PathVariable("date") LocalDate date,@ApiParam(value = "doctorId",required=true) @PathVariable("doctorId") Long doctorId,@ApiParam(value = "Page number of the requested page") @Valid @RequestParam(value = "page", required = false) Integer page,@ApiParam(value = "Size of a page") @Valid @RequestParam(value = "size", required = false) Integer size,@ApiParam(value = "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.") @Valid @RequestParam(value = "sort", required = false) List<String> sort);
+    ResponseEntity<List<ReservedSlotDTO>> createSlotUsingPOST(@ApiParam(value = "date",required=true) @PathVariable("date") LocalDate date,@ApiParam(value = "doctorId",required=true) @PathVariable("doctorId") Long doctorId);
 
 
     @ApiOperation(value = "deleteReservedSlot", nickname = "deleteReservedSlotUsingDELETE", notes = "", tags={ "reserved-slot-resource", })

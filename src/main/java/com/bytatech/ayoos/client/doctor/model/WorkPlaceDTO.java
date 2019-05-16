@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * WorkPlaceDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:37:49.322+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T10:37:31.354+05:30[Asia/Kolkata]")
 
 public class WorkPlaceDTO   {
   @JsonProperty("doctorId")
@@ -24,6 +24,9 @@ public class WorkPlaceDTO   {
 
   @JsonProperty("location")
   private String location = null;
+
+  @JsonProperty("locationName")
+  private String locationName = null;
 
   @JsonProperty("name")
   private String name = null;
@@ -88,6 +91,26 @@ public class WorkPlaceDTO   {
     this.location = location;
   }
 
+  public WorkPlaceDTO locationName(String locationName) {
+    this.locationName = locationName;
+    return this;
+  }
+
+  /**
+   * Get locationName
+   * @return locationName
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getLocationName() {
+    return locationName;
+  }
+
+  public void setLocationName(String locationName) {
+    this.locationName = locationName;
+  }
+
   public WorkPlaceDTO name(String name) {
     this.name = name;
     return this;
@@ -121,12 +144,13 @@ public class WorkPlaceDTO   {
     return Objects.equals(this.doctorId, workPlaceDTO.doctorId) &&
         Objects.equals(this.id, workPlaceDTO.id) &&
         Objects.equals(this.location, workPlaceDTO.location) &&
+        Objects.equals(this.locationName, workPlaceDTO.locationName) &&
         Objects.equals(this.name, workPlaceDTO.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(doctorId, id, location, name);
+    return Objects.hash(doctorId, id, location, locationName, name);
   }
 
   @Override
@@ -137,6 +161,7 @@ public class WorkPlaceDTO   {
     sb.append("    doctorId: ").append(toIndentedString(doctorId)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("    locationName: ").append(toIndentedString(locationName)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();

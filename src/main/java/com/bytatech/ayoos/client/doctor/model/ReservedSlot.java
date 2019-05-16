@@ -1,13 +1,14 @@
 package com.bytatech.ayoos.client.doctor.model;
 
 import java.util.Objects;
-import java.time.LocalDate;
 import com.bytatech.ayoos.client.doctor.model.Doctor;
 import com.bytatech.ayoos.client.doctor.model.Status;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,230 +20,231 @@ import javax.validation.constraints.*;
  * ReservedSlot
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:37:49.322+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T10:37:31.354+05:30[Asia/Kolkata]")
 
-public class ReservedSlot {
-	@JsonProperty("date")
-	private LocalDate date = null;
+public class ReservedSlot   {
+  @JsonProperty("date")
+  private LocalDate date = null;
 
-	@JsonProperty("doctor")
-	private Doctor doctor = null;
+  @JsonProperty("doctor")
+  private Doctor doctor = null;
 
-	@JsonProperty("endTime")
-	private Double endTime = null;
+  @JsonProperty("endTime")
+  private Double endTime = null;
 
-	@JsonProperty("id")
-	private Long id = null;
+  @JsonProperty("id")
+  private Long id = null;
 
-	@JsonProperty("startTime")
-	private Double startTime = null;
+  @JsonProperty("startTime")
+  private Double startTime = null;
 
-	@JsonProperty("statuses")
-	@Valid
-	private List<Status> statuses = null;
+  @JsonProperty("statuses")
+  @Valid
+  private List<Status> statuses = null;
 
-	@JsonProperty("tokenNumber")
-	private Integer tokenNumber = null;
+  @JsonProperty("tokenNumber")
+  private Integer tokenNumber = null;
 
-	public ReservedSlot date(LocalDate date) {
-		this.date = date;
-		return this;
-	}
+  public ReservedSlot date(LocalDate date) {
+    this.date = date;
+    return this;
+  }
 
-	/**
-	 * Get date
-	 * 
-	 * @return date
-	 **/
-	@ApiModelProperty(value = "")
+  /**
+   * Get date
+   * @return date
+  **/
+  @ApiModelProperty(value = "")
 
-	@Valid
+  @Valid
 
-	public LocalDate getDate() {
-		return date;
-	}
+  public LocalDate getDate() {
+    return date;
+  }
 
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
+  public void setDate(LocalDate date) {
+    this.date = date;
+  }
 
-	public ReservedSlot doctor(Doctor doctor) {
-		this.doctor = doctor;
-		return this;
-	}
+  public ReservedSlot doctor(Doctor doctor) {
+    this.doctor = doctor;
+    return this;
+  }
 
-	/**
-	 * Get doctor
-	 * 
-	 * @return doctor
-	 **/
-	@ApiModelProperty(value = "")
+  /**
+   * Get doctor
+   * @return doctor
+  **/
+  @ApiModelProperty(value = "")
 
-	@Valid
+  @Valid
 
-	public Doctor getDoctor() {
-		return doctor;
-	}
+  public Doctor getDoctor() {
+    return doctor;
+  }
 
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
-	}
+  public void setDoctor(Doctor doctor) {
+    this.doctor = doctor;
+  }
 
-	public ReservedSlot endTime(Double endTime) {
-		this.endTime = endTime;
-		return this;
-	}
+  public ReservedSlot endTime(Double endTime) {
+    this.endTime = endTime;
+    return this;
+  }
 
-	/**
-	 * Get endTime
-	 * 
-	 * @return endTime
-	 **/
-	@ApiModelProperty(value = "")
+  /**
+   * Get endTime
+   * @return endTime
+  **/
+  @ApiModelProperty(value = "")
 
-	public Double getEndTime() {
-		return endTime;
-	}
 
-	public void setEndTime(Double endTime) {
-		this.endTime = endTime;
-	}
+  public Double getEndTime() {
+    return endTime;
+  }
 
-	public ReservedSlot id(Long id) {
-		this.id = id;
-		return this;
-	}
+  public void setEndTime(Double endTime) {
+    this.endTime = endTime;
+  }
 
-	/**
-	 * Get id
-	 * 
-	 * @return id
-	 **/
-	@ApiModelProperty(value = "")
+  public ReservedSlot id(Long id) {
+    this.id = id;
+    return this;
+  }
 
-	public Long getId() {
-		return id;
-	}
+  /**
+   * Get id
+   * @return id
+  **/
+  @ApiModelProperty(value = "")
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public ReservedSlot startTime(Double startTime) {
-		this.startTime = startTime;
-		return this;
-	}
+  public Long getId() {
+    return id;
+  }
 
-	/**
-	 * Get startTime
-	 * 
-	 * @return startTime
-	 **/
-	@ApiModelProperty(value = "")
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public Double getStartTime() {
-		return startTime;
-	}
+  public ReservedSlot startTime(Double startTime) {
+    this.startTime = startTime;
+    return this;
+  }
 
-	public void setStartTime(Double startTime) {
-		this.startTime = startTime;
-	}
+  /**
+   * Get startTime
+   * @return startTime
+  **/
+  @ApiModelProperty(value = "")
 
-	public ReservedSlot statuses(List<Status> statuses) {
-		this.statuses = statuses;
-		return this;
-	}
 
-	public ReservedSlot addStatusesItem(Status statusesItem) {
-		if (this.statuses == null) {
-			this.statuses = new ArrayList<Status>();
-		}
-		this.statuses.add(statusesItem);
-		return this;
-	}
+  public Double getStartTime() {
+    return startTime;
+  }
 
-	/**
-	 * Get statuses
-	 * 
-	 * @return statuses
-	 **/
-	@ApiModelProperty(value = "")
+  public void setStartTime(Double startTime) {
+    this.startTime = startTime;
+  }
 
-	@Valid
+  public ReservedSlot statuses(List<Status> statuses) {
+    this.statuses = statuses;
+    return this;
+  }
 
-	public List<Status> getStatuses() {
-		return statuses;
-	}
+  public ReservedSlot addStatusesItem(Status statusesItem) {
+    if (this.statuses == null) {
+      this.statuses = new ArrayList<Status>();
+    }
+    this.statuses.add(statusesItem);
+    return this;
+  }
 
-	public void setStatuses(List<Status> statuses) {
-		this.statuses = statuses;
-	}
+  /**
+   * Get statuses
+   * @return statuses
+  **/
+  @ApiModelProperty(value = "")
 
-	public ReservedSlot tokenNumber(Integer tokenNumber) {
-		this.tokenNumber = tokenNumber;
-		return this;
-	}
+  @Valid
 
-	/**
-	 * Get tokenNumber
-	 * 
-	 * @return tokenNumber
-	 **/
-	@ApiModelProperty(value = "")
+  public List<Status> getStatuses() {
+    return statuses;
+  }
 
-	public Integer getTokenNumber() {
-		return tokenNumber;
-	}
+  public void setStatuses(List<Status> statuses) {
+    this.statuses = statuses;
+  }
 
-	public void setTokenNumber(Integer tokenNumber) {
-		this.tokenNumber = tokenNumber;
-	}
+  public ReservedSlot tokenNumber(Integer tokenNumber) {
+    this.tokenNumber = tokenNumber;
+    return this;
+  }
 
-	@Override
-	public boolean equals(java.lang.Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		ReservedSlot reservedSlot = (ReservedSlot) o;
-		return Objects.equals(this.date, reservedSlot.date) && Objects.equals(this.doctor, reservedSlot.doctor)
-				&& Objects.equals(this.endTime, reservedSlot.endTime) && Objects.equals(this.id, reservedSlot.id)
-				&& Objects.equals(this.startTime, reservedSlot.startTime)
-				&& Objects.equals(this.statuses, reservedSlot.statuses)
-				&& Objects.equals(this.tokenNumber, reservedSlot.tokenNumber);
-	}
+  /**
+   * Get tokenNumber
+   * @return tokenNumber
+  **/
+  @ApiModelProperty(value = "")
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(date, doctor, endTime, id, startTime, statuses, tokenNumber);
-	}
 
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("class ReservedSlot {\n");
+  public Integer getTokenNumber() {
+    return tokenNumber;
+  }
 
-		sb.append("    date: ").append(toIndentedString(date)).append("\n");
-		sb.append("    doctor: ").append(toIndentedString(doctor)).append("\n");
-		sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
-		sb.append("    id: ").append(toIndentedString(id)).append("\n");
-		sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
-		sb.append("    statuses: ").append(toIndentedString(statuses)).append("\n");
-		sb.append("    tokenNumber: ").append(toIndentedString(tokenNumber)).append("\n");
-		sb.append("}");
-		return sb.toString();
-	}
+  public void setTokenNumber(Integer tokenNumber) {
+    this.tokenNumber = tokenNumber;
+  }
 
-	/**
-	 * Convert the given object to string with each line indented by 4 spaces
-	 * (except the first line).
-	 */
-	private String toIndentedString(java.lang.Object o) {
-		if (o == null) {
-			return "null";
-		}
-		return o.toString().replace("\n", "\n    ");
-	}
+
+  @Override
+  public boolean equals(java.lang.Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ReservedSlot reservedSlot = (ReservedSlot) o;
+    return Objects.equals(this.date, reservedSlot.date) &&
+        Objects.equals(this.doctor, reservedSlot.doctor) &&
+        Objects.equals(this.endTime, reservedSlot.endTime) &&
+        Objects.equals(this.id, reservedSlot.id) &&
+        Objects.equals(this.startTime, reservedSlot.startTime) &&
+        Objects.equals(this.statuses, reservedSlot.statuses) &&
+        Objects.equals(this.tokenNumber, reservedSlot.tokenNumber);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(date, doctor, endTime, id, startTime, statuses, tokenNumber);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ReservedSlot {\n");
+    
+    sb.append("    date: ").append(toIndentedString(date)).append("\n");
+    sb.append("    doctor: ").append(toIndentedString(doctor)).append("\n");
+    sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
+    sb.append("    statuses: ").append(toIndentedString(statuses)).append("\n");
+    sb.append("    tokenNumber: ").append(toIndentedString(tokenNumber)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(java.lang.Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
 }
+

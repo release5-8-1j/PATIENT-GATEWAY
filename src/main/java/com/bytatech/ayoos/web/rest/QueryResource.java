@@ -102,10 +102,8 @@ public class QueryResource {
 	
 
 	@GetMapping("/slot/{date}/{doctorId}")
-	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@PathVariable LocalDate date, @PathVariable Long doctorId,
-			@RequestParam(value = "page") Integer page, @RequestParam(value = "size") Integer size,
-			@RequestParam(value = "sort") ArrayList<String> sort) {
-		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId, page, size, sort);
+	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@PathVariable LocalDate date, @PathVariable Long doctorId) {
+		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId);
 	}
 	
 	

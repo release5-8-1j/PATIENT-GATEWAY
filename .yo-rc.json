@@ -33,8 +33,8 @@
   },
   "generator-jhipster-swagger-cli": {
     "promptValues": {
-      "inputSpec": "http://35.243.137.225:8081/v2/api-docs",
-      "cliName": "patient"
+      "inputSpec": "http://35.243.137.225:8083/v2/api-docs",
+      "cliName": "doctor"
     }
   }
 }
