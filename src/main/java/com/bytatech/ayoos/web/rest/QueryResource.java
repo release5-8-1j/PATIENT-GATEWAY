@@ -102,8 +102,8 @@ public class QueryResource {
 		return ResponseUtil.wrapOrNotFound(doctor);
 	}
 	
-	@PostMapping("/slot/{date}/{doctorId}")
-	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@PathVariable @JsonFormat(pattern ="yyyy-MM-dd") LocalDate date, @PathVariable Long doctorId) {
+	@PostMapping("/slot")
+	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@RequestParam  LocalDate date, @RequestParam Long doctorId) {
 		System.out.println("+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+date);
 		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId);
 	}
