@@ -16,13 +16,9 @@ import javax.validation.constraints.*;
  * Reply
  */
 @Validated
-<<<<<<< HEAD
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T10:37:31.354+05:30[Asia/Kolkata]")
 
-=======
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:37:49.322+05:30[Asia/Kolkata]")
 @Document(indexName="replay")
->>>>>>> a3e7c3cfd7a55bcdb255ce045ffa6e6c151de9a0
 public class Reply   {
   @JsonProperty("id")
   private Long id = null;
