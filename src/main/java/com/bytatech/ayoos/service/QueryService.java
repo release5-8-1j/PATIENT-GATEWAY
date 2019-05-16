@@ -9,7 +9,7 @@ import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
 
 import com.bytatech.ayoos.client.doctor.model.*;
-import com.bytatech.ayoos.client.domain.*;
+import com.bytatech.ayoos.client.patient.model.*;
 
 
 public interface QueryService {

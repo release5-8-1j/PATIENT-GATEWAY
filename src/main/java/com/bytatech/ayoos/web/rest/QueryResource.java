@@ -23,7 +23,7 @@ import com.bytatech.ayoos.client.doctor.api.ReservedSlotResourceApi;
 import com.bytatech.ayoos.client.doctor.model.Doctor;
 import com.bytatech.ayoos.client.doctor.model.ReservedSlotDTO;
 import com.bytatech.ayoos.client.doctor.model.Review;
-import com.bytatech.ayoos.client.domain.Patient;
+import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.client.patient.api.AddressLineResourceApi;
 import com.bytatech.ayoos.client.patient.api.PatientResourceApi;
 import com.bytatech.ayoos.client.patient.model.AddressLineDTO;

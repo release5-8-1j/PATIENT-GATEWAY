@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import com.bytatech.ayoos.client.doctor.model.*;
 
-import com.bytatech.ayoos.client.domain.*;
+import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.service.QueryService;
 import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
 import com.github.vanroy.springdata.jest.aggregation.AggregatedPage;
