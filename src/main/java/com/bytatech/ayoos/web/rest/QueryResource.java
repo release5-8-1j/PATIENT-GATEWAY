@@ -32,6 +32,7 @@ import com.bytatech.ayoos.client.patient.api.PatientResourceApi;
 import com.bytatech.ayoos.client.patient.model.AddressLineDTO;
 import com.bytatech.ayoos.client.patient.model.PatientDTO;
 import com.bytatech.ayoos.service.QueryService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
@@ -102,7 +103,7 @@ public class QueryResource {
 	}
 	
 	@PostMapping("/slot/{date}/{doctorId}")
-	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @PathVariable Long doctorId) {
+	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@PathVariable @JsonFormat(pattern ="yyyy-mm-dd") LocalDate date, @PathVariable Long doctorId) {
 		System.out.println("+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+date);
 		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId);
 	}
