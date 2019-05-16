@@ -19,11 +19,11 @@ import com.bytatech.ayoos.client.doctor.api.*;
 public class CommandResource {
 	
 	@Autowired
-	AppointmentCommandResourceApi AppointmentCommandResourceApi;
+	AppointmentCommandResourceApi appointmentCommandResourceApi;
 	
 	
 	@Autowired
-	CommandResourceApi commandResourceApi;
+	CommandResourceApi patientcommandResourceApi;
 	
 	@Autowired
 	UserRatingResourceApi userRatingResourceApi;
@@ -46,23 +46,28 @@ public class CommandResource {
 	
 	@PostMapping("/patients")
 	public ResponseEntity<PatientDTO> createPatient(@RequestBody PatientDTO patientDTO) {
-		return commandResourceApi.createPatientUsingPOST(patientDTO);
+		return  patientcommandResourceApi.createPatientUsingPOST(patientDTO);
 	}
 
 	@PutMapping("/patients")
 	public ResponseEntity<PatientDTO> updatePatient(@RequestBody PatientDTO patientDTO) {
-		return commandResourceApi.updatePatientUsingPUT(patientDTO);
+		return  patientcommandResourceApi.updatePatientUsingPUT(patientDTO);
 	}
 	@PostMapping("/address-lines")
 	public ResponseEntity<AddressLineDTO> createAddressLine(@RequestBody AddressLineDTO addressLineDTO) {
-		return commandResourceApi.createAddressLineUsingPOST1(addressLineDTO);
+		return  patientcommandResourceApi.createAddressLineUsingPOST1(addressLineDTO);
 	}
 	
 	@PutMapping("/address-lines")
 	public ResponseEntity<AddressLineDTO> updateAddressLine(@RequestBody AddressLineDTO addressLineDTO) {
-		return commandResourceApi.updateAddressLineUsingPUT1(addressLineDTO);
+		return  patientcommandResourceApi.updateAddressLineUsingPUT1(addressLineDTO);
 	}
 	
+	
+	/*@PostMapping("/appointments/additionalInformationRequest")
+	public ResponseEntity<AddressLineDTO> createadditionalInformationRequest() {
+		return appointmentCommandResourceApi.additionalInformationRequestUsingPOST(taskId, additionalInformationRequest);
+	}*/
 	
 	
 	
