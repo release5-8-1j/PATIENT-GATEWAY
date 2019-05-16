@@ -61,8 +61,7 @@ public interface ReservedSlotResourceApi {
     @RequestMapping(value = "/api/slot",
         produces = "*/*", 
         method = RequestMethod.POST)
-    ResponseEntity<List<ReservedSlotDTO>> createSlotUsingPOST(@ApiParam(value = "date",required=true) @RequestParam(value = "date", required =true)/*@PathVariable("date")*/ @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,@ApiParam(value = "doctorId",required=true) @RequestParam(value = "doctor", required =true)/*@PathVariable("doctorId")*/ Long doctorId);
-
+    ResponseEntity<List<ReservedSlotDTO>> createSlotUsingPOST(@NotNull @ApiParam(value = "date", required = true) @Valid @RequestParam(value = "date", required = true) LocalDate date,@NotNull @ApiParam(value = "doctorId", required = true) @Valid @RequestParam(value = "doctorId", required = true) Long doctorId);
 
     @ApiOperation(value = "deleteReservedSlot", nickname = "deleteReservedSlotUsingDELETE", notes = "", tags={ "reserved-slot-resource", })
     @ApiResponses(value = { 

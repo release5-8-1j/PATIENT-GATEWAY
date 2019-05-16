@@ -105,6 +105,7 @@ public class QueryResource {
 	@PostMapping("/slot")
 	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @RequestParam Long doctorId) {
 		System.out.println("+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+date);
+		
 		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId);
 	}
 	
