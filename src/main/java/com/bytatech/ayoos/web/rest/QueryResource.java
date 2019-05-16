@@ -15,6 +15,7 @@ import org.springframework.data.geo.Point;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -99,7 +100,7 @@ public class QueryResource {
 		return ResponseUtil.wrapOrNotFound(doctor);
 	}
 	
-	@GetMapping("/slot/{date}/{doctorId}")
+	@PostMapping("/slot/{date}/{doctorId}")
 	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@PathVariable LocalDate date, @PathVariable Long doctorId) {
 		System.out.println("+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+date);
 		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId);
