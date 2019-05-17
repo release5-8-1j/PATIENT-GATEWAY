@@ -23,9 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bytatech.ayoos.client.doctor.api.ReservedSlotResourceApi;
-import com.bytatech.ayoos.client.doctor.model.Doctor;
+import com.bytatech.ayoos.client.doctor.model.*;
 import com.bytatech.ayoos.client.doctor.model.ReservedSlotDTO;
 import com.bytatech.ayoos.client.doctor.model.Review;
+import com.bytatech.ayoos.client.doctor.model.WorkPlace;
 import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.client.patient.api.AddressLineResourceApi;
 import com.bytatech.ayoos.client.patient.api.PatientResourceApi;
@@ -70,12 +71,12 @@ public class QueryResource {
 
 	}
 
-	@GetMapping("/findByLocationWithin")
+	/*@GetMapping("/findByLocationWithin")
 	public ResponseEntity<List<Doctor>> searchByLocation(@RequestParam("location") Double[] location,
 			@RequestParam("distance") Double distance, Pageable pageable) {
 		Point point = new Point(location[0], location[1]);
 		return ResponseEntity.ok().body(queryService.findByLocationWithin(point, new Distance(distance,Metrics.KILOMETERS), pageable).getContent());
-	}
+	}*/
 
 	@GetMapping("/findReviewByDoctorId/{doctorId}")
 	public ResponseEntity<List<Review>> findReviewByDoctorId(@PathVariable String doctorId, Pageable pageable) {
@@ -102,7 +103,7 @@ public class QueryResource {
 		return ResponseUtil.wrapOrNotFound(doctor);
 	}
 	
-	@PostMapping("/slot")
+	/*@PostMapping("/slot")
 	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@RequestParam  LocalDate date, @RequestParam Long doctorId) {
 		System.out.println("+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+date);
 		
@@ -114,7 +115,7 @@ public class QueryResource {
 		System.out.println("+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+date);
 		
 		return reservedSlotResourceApi.test1UsingGET(date, doctorId);
-	}
+	}*/
 	
 	@GetMapping("/test2/{date}/{doctorId}")
 	public ResponseEntity<List<ReservedSlotDTO>> test2(@PathVariable  String date, @PathVariable Long doctorId) {
@@ -124,7 +125,12 @@ public class QueryResource {
 	}
 	
 	
-	
+	@GetMapping("/location/findByLocationWithin/{lat}/{lon}/{distance}")
+	public ResponseEntity<List<WorkPlace>> searchByLocationWithin(@PathVariable Double lat,
+			@PathVariable Double lon,@PathVariable Double distance, Pageable pageable) {
+		Point point = new Point(lat, lon);
+		return ResponseEntity.ok().body(queryService.findByLocationWithin(point, new Distance(distance,Metrics.KILOMETERS), pageable).getContent());
+	}
 	
 	
 	

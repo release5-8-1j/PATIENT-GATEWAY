@@ -123,8 +123,8 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public Page<Doctor> findByLocationWithin(Point point, Distance distance, Pageable pageable) {
-		return elasticsearchTemplate.queryForPage(getGeoQuery(point, distance, pageable), Doctor.class);
+	public Page<WorkPlace> findByLocationWithin(Point point, Distance distance, Pageable pageable) {
+		return elasticsearchTemplate.queryForPage(getGeoQuery(point, distance, pageable),WorkPlace.class);
 	}
 
 	private CriteriaQuery getGeoQuery(Point point, Distance distance, Pageable pageable) {
