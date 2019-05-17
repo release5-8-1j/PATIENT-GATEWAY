@@ -51,17 +51,17 @@ public interface ReservedSlotResourceApi {
     ResponseEntity<ReservedSlotDTO> createReservedSlotUsingPOST(@ApiParam(value = "reservedSlotDTO" ,required=true )  @Valid @RequestBody ReservedSlotDTO reservedSlotDTO);
 
 
-    @ApiOperation(value = "createSlot", nickname = "createSlotUsingPOST", notes = "", response = ReservedSlotDTO.class, responseContainer = "List", tags={ "reserved-slot-resource", })
+   /* @ApiOperation(value = "createSlot", nickname = "createSlotUsingPOST", notes = "", response = ReservedSlotDTO.class, responseContainer = "List", tags={ "reserved-slot-resource", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ReservedSlotDTO.class, responseContainer = "List"),
         @ApiResponse(code = 201, message = "Created"),
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 403, message = "Forbidden"),
         @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/slot",
-        produces = "*/*", 
-        method = RequestMethod.POST)
-    ResponseEntity<List<ReservedSlotDTO>> createSlotUsingPOST(@NotNull @ApiParam(value = "date", required = true) @Valid @RequestParam(value = "date", required = true) LocalDate date,@NotNull @ApiParam(value = "doctorId", required = true) @Valid @RequestParam(value = "doctorId", required = true) Long doctorId);
+    @RequestMapping(value = "/api/slot",*/
+      //  produces = "*/*", 
+    /*    method = RequestMethod.POST)
+    ResponseEntity<List<ReservedSlotDTO>> createSlotUsingPOST(@NotNull @ApiParam(value = "date", required = true) @Valid @RequestParam(value = "date", required = true) LocalDate date,@NotNull @ApiParam(value = "doctorId", required = true) @Valid @RequestParam(value = "doctorId", required = true) Long doctorId);*/
 
     @ApiOperation(value = "deleteReservedSlot", nickname = "deleteReservedSlotUsingDELETE", notes = "", tags={ "reserved-slot-resource", })
     @ApiResponses(value = { 
@@ -160,4 +160,69 @@ public interface ReservedSlotResourceApi {
         method = RequestMethod.PUT)
     ResponseEntity<ReservedSlotDTO> updateReservedSlotUsingPUT(@ApiParam(value = "reservedSlotDTO" ,required=true )  @Valid @RequestBody ReservedSlotDTO reservedSlotDTO);
 
+    
+    @ApiOperation(value = "test1", nickname = "test1UsingGET", notes = "", tags={ "reserved-slot-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/test1/{date}/{doctorId}",
+        method = RequestMethod.GET)
+    ResponseEntity<Void> test1UsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") LocalDate date,@ApiParam(value = "doctorId",required=true) @PathVariable("doctorId") Long doctorId);
+
+
+    @ApiOperation(value = "test2", nickname = "test2UsingGET", notes = "", response = ReservedSlotDTO.class, responseContainer = "List", tags={ "reserved-slot-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = ReservedSlotDTO.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/test2/{date}/{doctorId}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<List<ReservedSlotDTO>> test2UsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "doctorId",required=true) @PathVariable("doctorId") Long doctorId);
+
+    
+    
+    @ApiOperation(value = "createSlot", nickname = "createSlotUsingPOST", notes = "", response = ReservedSlotDTO.class, responseContainer = "List", tags={ "reserved-slot-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = ReservedSlotDTO.class, responseContainer = "List"),
+        @ApiResponse(code = 201, message = "Created"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/slot",
+        produces = "*/*", 
+        method = RequestMethod.POST)
+    ResponseEntity<List<ReservedSlotDTO>> createSlotUsingPOST(@NotNull @ApiParam(value = "date", required = true) @Valid @RequestParam(value = "date", required = true) LocalDate date,@NotNull @ApiParam(value = "doctorId", required = true) @Valid @RequestParam(value = "doctorId", required = true) Long doctorId);
+ 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
