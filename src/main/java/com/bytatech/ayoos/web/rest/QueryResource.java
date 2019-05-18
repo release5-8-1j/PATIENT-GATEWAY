@@ -103,23 +103,10 @@ public class QueryResource {
 		return ResponseUtil.wrapOrNotFound(doctor);
 	}
 	
-	/*@PostMapping("/slot")
-	public ResponseEntity<List<ReservedSlotDTO>> createSlot(@RequestParam  LocalDate date, @RequestParam Long doctorId) {
-		System.out.println("+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+date);
-		
-		return reservedSlotResourceApi.createSlotUsingPOST(date, doctorId);
-	}
-	
-	@GetMapping("/test1")
-	public ResponseEntity<Void> test1(@RequestParam  LocalDate date, @RequestParam Long doctorId) {
-		System.out.println("+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+date);
-		
-		return reservedSlotResourceApi.test1UsingGET(date, doctorId);
-	}*/
 	
 	@GetMapping("/test2/{date}/{doctorId}")
 	public ResponseEntity<List<ReservedSlotDTO>> test2(@PathVariable  String date, @PathVariable Long doctorId) {
-		System.out.println("+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+date);
+		
 		
 		return reservedSlotResourceApi.test2UsingGET(date, doctorId);
 	}

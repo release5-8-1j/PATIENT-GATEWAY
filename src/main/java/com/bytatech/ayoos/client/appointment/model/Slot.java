@@ -1,11 +1,14 @@
 package com.bytatech.ayoos.client.appointment.model;
 
+import java.util.Date;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
+
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -18,15 +21,18 @@ import javax.validation.constraints.*;
 
 public class Slot   {
   @JsonProperty("day")
-  private OffsetDateTime day = null;
+  @JsonFormat(pattern = "MM-dd-yyyy" ,timezone="IST")
+  private Date day = null;
 
   @JsonProperty("endTime")
-  private OffsetDateTime endTime = null;
+  @JsonFormat(pattern = "hh:mm")
+  private Date endTime = null;
 
   @JsonProperty("startTime")
-  private OffsetDateTime startTime = null;
+  @JsonFormat(pattern = "hh:mm")
+  private Date startTime = null;
 
-  public Slot day(OffsetDateTime day) {
+  public Slot day(Date day) {
     this.day = day;
     return this;
   }
@@ -39,15 +45,15 @@ public class Slot   {
 
   @Valid
 
-  public OffsetDateTime getDay() {
+  public Date getDay() {
     return day;
   }
 
-  public void setDay(OffsetDateTime day) {
+  public void setDay(Date day) {
     this.day = day;
   }
 
-  public Slot endTime(OffsetDateTime endTime) {
+  public Slot endTime(Date endTime) {
     this.endTime = endTime;
     return this;
   }
@@ -60,15 +66,15 @@ public class Slot   {
 
   @Valid
 
-  public OffsetDateTime getEndTime() {
+  public Date getEndTime() {
     return endTime;
   }
 
-  public void setEndTime(OffsetDateTime endTime) {
+  public void setEndTime(Date endTime) {
     this.endTime = endTime;
   }
 
-  public Slot startTime(OffsetDateTime startTime) {
+  public Slot startTime(Date startTime) {
     this.startTime = startTime;
     return this;
   }
@@ -81,11 +87,11 @@ public class Slot   {
 
   @Valid
 
-  public OffsetDateTime getStartTime() {
+  public Date getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(OffsetDateTime startTime) {
+  public void setStartTime(Date startTime) {
     this.startTime = startTime;
   }
 
