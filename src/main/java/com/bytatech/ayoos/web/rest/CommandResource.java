@@ -97,7 +97,8 @@ public class CommandResource {
 	
 	@PostMapping("/appointments/initiateAppointment")
 	public ResponseEntity<com.bytatech.ayoos.client.appointment.model.CommandResource> createInitiateAppointment(@RequestBody AppointmentRequest appointmentRequest) {
-		return appointmentCommandResourceApi.initiateAppointmentUsingPOST(appointmentRequest);
+		ResponseEntity<com.bytatech.ayoos.client.appointment.model.CommandResource> c= appointmentCommandResourceApi.initiateAppointmentUsingPOST(appointmentRequest);
+		return c;
 	}
 	
 	@PostMapping("/appointments/processPayment/{taskId}")
