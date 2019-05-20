@@ -22,7 +22,7 @@ public interface QueryService {
 	public Page<Doctor> facetSearch(String specialization,Double ratings, Double feeFrom,
 			Double feeTo, Pageable pageable);
 
-	public List<WorkPlace>  findByLocationWithin(Point point, Distance distance, Pageable pageable);
+	public List<WorkPlace>  findByLocationWithin(Point point, Distance distance);
 
 
 	public Page<Review> findReviewByDoctorId(String doctorId, Pageable pageable);

@@ -141,6 +141,7 @@ public class QueryResource {
 	@GetMapping("/location/findByLocationWithin")
 	public void searchByLocationWithin(){
 		System.out.println("haiiiiiiiiiiii");
+		 queryService.findByLocationWithin(new Point(10.789428,76.573091),new Distance(5.00, Metrics.KILOMETERS) );
 	}
 	
 }
