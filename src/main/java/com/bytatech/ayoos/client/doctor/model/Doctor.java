@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +62,7 @@ public class Doctor   {
   private Long phoneNumber = null;
 
   @JsonProperty("practiceSince")
-  private OffsetDateTime practiceSince = null;
+  private ZonedDateTime practiceSince = null;
 
   @JsonProperty("qualifications")
   @Valid
@@ -296,7 +296,7 @@ public class Doctor   {
     this.phoneNumber = phoneNumber;
   }
 
-  public Doctor practiceSince(OffsetDateTime practiceSince) {
+  public Doctor practiceSince(ZonedDateTime practiceSince) {
     this.practiceSince = practiceSince;
     return this;
   }
@@ -309,11 +309,11 @@ public class Doctor   {
 
   @Valid
 
-  public OffsetDateTime getPracticeSince() {
+  public ZonedDateTime getPracticeSince() {
     return practiceSince;
   }
 
-  public void setPracticeSince(OffsetDateTime practiceSince) {
+  public void setPracticeSince(ZonedDateTime practiceSince) {
     this.practiceSince = practiceSince;
   }
 
