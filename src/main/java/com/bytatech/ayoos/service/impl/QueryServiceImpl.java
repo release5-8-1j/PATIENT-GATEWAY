@@ -66,7 +66,15 @@ public class QueryServiceImpl implements QueryService {
 	@Override
 	public Page<Doctor> findAllDoctors(Pageable pageable) {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchAllQuery()).build();
+		List<Doctor> d=elasticsearchOperations.queryForList(searchQuery, Doctor.class);
 
+		for(Doctor d1:d) {
+			System.out.println("################################"+d1.getPracticeSince());
+		}
+		
+		
+		
+		
 		return elasticsearchOperations.queryForPage(searchQuery, Doctor.class);
 
 	}
