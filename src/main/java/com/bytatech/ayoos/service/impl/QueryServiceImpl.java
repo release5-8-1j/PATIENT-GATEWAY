@@ -122,14 +122,6 @@ public class QueryServiceImpl implements QueryService {
 		return elasticsearchOperations.queryForPage(searchQuery, Doctor.class);
 	}
 
-	@Override
-	public Page<WorkPlace> findByLocationWithin(Point point, Distance distance, Pageable pageable) {
-		return elasticsearchTemplate.queryForPage(getGeoQuery(point, distance, pageable),WorkPlace.class);
-	}
-
-	private CriteriaQuery getGeoQuery(Point point, Distance distance, Pageable pageable) {
-		return new CriteriaQuery(new Criteria("location").within(point, distance), pageable);
-	}
 
 	@Override
 	public Page<Review> findReviewByDoctorId(String doctorId, Pageable pageable) {
@@ -155,5 +147,41 @@ public class QueryServiceImpl implements QueryService {
 		StringQuery stringQuery = new StringQuery(matchQuery("patientCode", patientCode).toString());
 		return Optional.of(elasticsearchOperations.queryForObject(stringQuery, Patient.class));
 	}
+	
+
+	@Override
+	public List<Doctor> findByLocationWithin(Point point, Distance distance, Pageable pageable) {
+		List<Doctor> doctor = new ArrayList<>();
+	List<WorkPlace> workplace =	 elasticsearchTemplate.queryForList(getGeoQuery(point, distance, pageable),WorkPlace.class);
+		 for(WorkPlace wp:workplace ) {
+			 doctor.add(wp.getDoctor());
+		 }
+		 return doctor;
+	}
+
+	private CriteriaQuery getGeoQuery(Point point, Distance distance, Pageable pageable) {
+		return new CriteriaQuery(new Criteria("location").within(point, distance), pageable);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

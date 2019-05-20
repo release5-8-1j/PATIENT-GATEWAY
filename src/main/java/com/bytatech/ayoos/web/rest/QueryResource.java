@@ -112,13 +112,13 @@ public class QueryResource {
 	}
 	
 	
-	@GetMapping("/location/findByLocationWithin/{lat}/{lon}/{distance}")
-	public ResponseEntity<List<WorkPlace>> searchByLocationWithin(@PathVariable Double lat,
+	/*@GetMapping("/location/findByLocationWithin""/location/findByLocationWithin/{lat}/{lon}/{distance}")
+	public ResponseEntity<List<Doctor>> searchByLocationWithin(@PathVariable Double lat,
 			@PathVariable Double lon,@PathVariable Double distance, Pageable pageable) {
-		Point point = new Point(lat, lon);
-		return ResponseEntity.ok().body(queryService.findByLocationWithin(point, new Distance(distance,Metrics.KILOMETERS), pageable).getContent());
+		Point point = new Point(10.789428,76.573091);
+		return ResponseEntity.ok().body(queryService.findByLocationWithin(point,new Distance(50.00, Metrics.KILOMETERS) new Distance(distance,Metrics.KILOMETERS), pageable).getContent());
 	}
-	
+	*/
 	
 	
 	
@@ -127,6 +127,13 @@ public class QueryResource {
 	public ResponseEntity<List<AddressLineDTO>> getAllAddressLinesByPatientId(@PathVariable("patientId") Long patientId) {
 		return addressLineResourceApi.getAllAddressLinesByPatientIdUsingGET(patientId);
 
+	}
+	
+	@GetMapping("/location/findByLocationWithin"/*"/location/findByLocationWithin/{lat}/{lon}/{distance}"*/)
+	public List<Doctor> searchByLocationWithin(/*@PathVariable Double lat,
+			@PathVariable Double lon,@PathVariable Double distance,*/ Pageable pageable) {
+		Point point = new Point(10.789428,76.573091);
+		return queryService.findByLocationWithin(point,new Distance(50.00, Metrics.KILOMETERS) /*new Distance(distance,Metrics.KILOMETERS)*/, pageable);
 	}
 	
 	
