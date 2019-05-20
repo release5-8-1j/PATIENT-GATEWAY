@@ -153,10 +153,15 @@ public class QueryServiceImpl implements QueryService {
 	public List<Doctor> findByLocationWithin(Point point, Distance distance, Pageable pageable) {
 		List<Doctor> doctor = new ArrayList<>();
 	List<WorkPlace> workplace =	 elasticsearchTemplate.queryForList(getGeoQuery(point, distance, pageable),WorkPlace.class);
-		 for(WorkPlace wp:workplace ) {
+	for(WorkPlace wp:workplace ) {
+		System.out.println(wp);
+	}
+	
+	
+	/* for(WorkPlace wp:workplace ) {
 			 doctor.add(wp.getDoctor());
-		 }
-		 return doctor;
+		 }*/
+		 return null;
 	}
 
 	private CriteriaQuery getGeoQuery(Point point, Distance distance, Pageable pageable) {
