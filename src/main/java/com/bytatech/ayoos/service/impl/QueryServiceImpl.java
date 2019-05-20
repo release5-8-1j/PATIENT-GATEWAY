@@ -155,7 +155,7 @@ public class QueryServiceImpl implements QueryService {
 	List<WorkPlace> workplace =	 elasticsearchTemplate.queryForList(getGeoQuery(point, distance),WorkPlace.class);
 
 	for(WorkPlace wp:workplace ) {
-		System.out.println(">>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<"+wp);
+		System.out.println(">>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<"+wp.getDoctor());
 	}
 	
 	
