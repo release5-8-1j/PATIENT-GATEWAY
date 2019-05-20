@@ -130,7 +130,7 @@ public class QueryResource {
 	}
 	
 	@GetMapping("/location/findByLocationWithin"/*"/location/findByLocationWithin/{lat}/{lon}/{distance}"*/)
-	public List<Doctor> searchByLocationWithin(/*@PathVariable Double lat,
+	public List<WorkPlace> searchByLocationWithin(/*@PathVariable Double lat,
 			@PathVariable Double lon,@PathVariable Double distance,*/ Pageable pageable) {
 		Point point = new Point(10.789428,76.573091);
 		return queryService.findByLocationWithin(point,new Distance(50.00, Metrics.KILOMETERS) /*new Distance(distance,Metrics.KILOMETERS)*/, pageable);
