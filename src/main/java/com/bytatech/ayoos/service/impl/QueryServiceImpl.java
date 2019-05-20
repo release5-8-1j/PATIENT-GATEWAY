@@ -152,7 +152,8 @@ public class QueryServiceImpl implements QueryService {
 	@Override
 	public List<WorkPlace> findByLocationWithin(Point point, Distance distance) {
 		List<Doctor> doctor = new ArrayList<>();
-	/*List<WorkPlace> workplace =	*/ return elasticsearchTemplate.queryForList(getGeoQuery(point, distance),WorkPlace.class);
+	List<WorkPlace> workplace =	 elasticsearchTemplate.queryForList(getGeoQuery(point, distance),WorkPlace.class);
+	return workplace;
 	/*for(WorkPlace wp:workplace ) {
 		System.out.println(wp);
 	}
