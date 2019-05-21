@@ -11,7 +11,8 @@ import com.bytatech.ayoos.client.patient.api.CommandResourceApi;
 import com.bytatech.ayoos.client.patient.api.PatientResourceApi;
 import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.client.domain.*;
-import com.bytatech.ayoos.repository.search.TestDateSearchRepository;
+import com.bytatech.ayoos.repository.search.DoctorSearchRepository;
+import com.bytatech.ayoos.repository.search.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,6 +46,10 @@ public class CommandResource {
 	
 	@Autowired
 	PatientResourceApi patientResourceApi;
+	
+	@Autowired
+    DoctorSearchRepository  doctorSearchRepository;
+	
 	
 	 @Autowired
 	    TestDateSearchRepository  testDateSearchRepository;
@@ -117,6 +122,15 @@ public class CommandResource {
     public Page<TestDate> search() {
     	return testDateSearchRepository.findAll(pageRequest);
     }
+	
+	
+	@GetMapping("/doctorsearch")
+    public Page<Doctor> doctorSearch() {
+    	return doctorSearchRepository.findAll(pageRequest);
+    }
+	
+	
+	
 	
 /*	@PostMapping("/appointments/processPayment/{taskId}")
 	public ResponseEntity<com.bytatech.ayoos.client.appointment.model.CommandResource> createProcessPayment(@PathVariable("taskId") String taskId,@RequestBody ProcessPayment processPayment) {
