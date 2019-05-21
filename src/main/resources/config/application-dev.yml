@@ -41,6 +41,7 @@ spring:
     jackson:
         serialization:
             indent-output: true
+            WRITE_DATES_AS_TIMESTAMPS: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/patientgateway?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC

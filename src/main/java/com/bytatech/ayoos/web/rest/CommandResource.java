@@ -10,10 +10,15 @@ import com.bytatech.ayoos.client.doctor.model.*;
 import com.bytatech.ayoos.client.patient.api.CommandResourceApi;
 import com.bytatech.ayoos.client.patient.api.PatientResourceApi;
 import com.bytatech.ayoos.client.patient.model.*;
-
+import com.bytatech.ayoos.client.domain.*;
+import com.bytatech.ayoos.repository.search.TestDateSearchRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -41,7 +46,9 @@ public class CommandResource {
 	@Autowired
 	PatientResourceApi patientResourceApi;
 	
-	
+	 @Autowired
+	    TestDateSearchRepository  testDateSearchRepository;
+	    private Pageable pageRequest = new PageRequest(0, 10);
 	@PostMapping("/rating")
     public ResponseEntity<UserRatingDTO> ratedoctor(@RequestBody UserRatingDTO userRatingDTO) {
     
@@ -74,7 +81,7 @@ public class CommandResource {
 	}
 	
 
-	
+	//---------------------Appointments-----------------------------
 	@PostMapping("/appointments/additionalInformationRequest/{taskId}")
 	public ResponseEntity<com.bytatech.ayoos.client.appointment.model.CommandResource> createAdditionalInformationRequest(@PathVariable("taskId") String taskId,@RequestBody AdditionalInformationRequest additionalInformationRequest) {
 		return appointmentCommandResourceApi.additionalInformationRequestUsingPOST(taskId, additionalInformationRequest);
@@ -106,7 +113,10 @@ public class CommandResource {
 	public ResponseEntity<com.bytatech.ayoos.client.appointment.model.CommandResource> createProcessPayment(@PathVariable("taskId") String taskId,@RequestBody ProcessPayment processPayment) {
 		return appointmentCommandResourceApi.processPaymentUsingPOST(taskId, processPayment);
 	}
-	
+	@GetMapping("/_search")
+    public Page<TestDate> search() {
+    	return testDateSearchRepository.findAll(pageRequest);
+    }
 	
 /*	@PostMapping("/appointments/processPayment/{taskId}")
 	public ResponseEntity<com.bytatech.ayoos.client.appointment.model.CommandResource> createProcessPayment(@PathVariable("taskId") String taskId,@RequestBody ProcessPayment processPayment) {
