@@ -9,6 +9,7 @@ import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
 
 import com.bytatech.ayoos.client.doctor.model.*;
+import com.bytatech.ayoos.client.domain.TestDate;
 import com.bytatech.ayoos.client.patient.model.*;
 
 
@@ -37,6 +38,8 @@ public interface QueryService {
 	public Optional<Patient> findPatient(String patientCode);
 
 	public  Optional<Doctor> findDoctorByDoctorId(String doctorId);
+
+	List<TestDate> findAllTestDates(Pageable pageable);
 	
 	
 	

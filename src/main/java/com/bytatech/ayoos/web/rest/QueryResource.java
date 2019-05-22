@@ -27,6 +27,7 @@ import com.bytatech.ayoos.client.doctor.model.*;
 import com.bytatech.ayoos.client.doctor.model.ReservedSlotDTO;
 import com.bytatech.ayoos.client.doctor.model.Review;
 import com.bytatech.ayoos.client.doctor.model.WorkPlace;
+import com.bytatech.ayoos.client.domain.TestDate;
 import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.client.patient.api.AddressLineResourceApi;
 import com.bytatech.ayoos.client.patient.api.PatientResourceApi;
@@ -58,6 +59,15 @@ public class QueryResource {
 		return ResponseEntity.ok().body(queryService.findAllDoctors(pageable).getContent());
 	}
 
+	@GetMapping("/findAllDates")
+	public List<TestDate> findAllDates(Pageable pageable) {
+		return queryService.findAllTestDates(pageable);
+	}
+
+	
+	
+	
+	
 	@GetMapping("/findAllQualification")
 	public List<String> findAllQualification(Pageable pageable) {
 		return queryService.findAllQualifications(pageable);

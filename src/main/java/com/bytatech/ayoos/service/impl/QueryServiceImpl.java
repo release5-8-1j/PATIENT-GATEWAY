@@ -22,9 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import com.bytatech.ayoos.client.doctor.model.*;
-
+import com.bytatech.ayoos.client.domain.TestDate;
 import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.service.QueryService;
 import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
@@ -66,24 +65,29 @@ public class QueryServiceImpl implements QueryService {
 	@Override
 	public Page<Doctor> findAllDoctors(Pageable pageable) {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchAllQuery()).build();
-		List<Doctor> d=elasticsearchOperations.queryForList(searchQuery, Doctor.class);
+		List<Doctor> d = elasticsearchOperations.queryForList(searchQuery, Doctor.class);
 
-		for(Doctor d1:d) {
-			System.out.println("################################"+d1.getPracticeSince());
+		for (Doctor d1 : d) {
+			System.out.println("################################" + d1.getPracticeSince());
 		}
-		
-		
-		
-		
+
 		return elasticsearchOperations.queryForPage(searchQuery, Doctor.class);
 
 	}
 
+	
+	@Override
+	public List<TestDate> findAllTestDates(Pageable pageable) {
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchAllQuery()).build();
+		return elasticsearchOperations.queryForList(searchQuery,TestDate.class);
+
+	}
+	
 	@Override
 	public Optional<Doctor> findDoctorByDoctorId(String doctorId) {
 
 		StringQuery stringQuery = new StringQuery(termQuery("doctorId", doctorId).toString());
-		return Optional.of( elasticsearchOperations.queryForObject(stringQuery, Doctor.class));
+		return Optional.of(elasticsearchOperations.queryForObject(stringQuery, Doctor.class));
 	}
 
 	@Override
@@ -96,16 +100,13 @@ public class QueryServiceImpl implements QueryService {
 
 		AggregatedPage<Qualification> result = elasticsearchTemplate.queryForPage(searchQuery, Qualification.class);
 		TermsAggregation subjectAgg = result.getAggregation("distinct_qualification", TermsAggregation.class);
-		// System.out.println(">>>>>>>>>>>>>"+subjectAgg.getBuckets().get(0).getKey());
-
+		
 		List<Entry> bucket = subjectAgg.getBuckets();
 
 		for (int i = 0; i < subjectAgg.getBuckets().size(); i++) {
 			qualificationList.add(subjectAgg.getBuckets().get(i).getKey());
 		}
-		/*
-		 * for(Entry b : bucket) { System.out.println(">>>>>>>>>>>>>"+b.getKey()); }
-		 */
+		
 
 		return qualificationList;
 
@@ -129,7 +130,6 @@ public class QueryServiceImpl implements QueryService {
 				/* .should(QueryBuilders.matchQuery("workplace.name", workplaceName)) */).build();
 		return elasticsearchOperations.queryForPage(searchQuery, Doctor.class);
 	}
-
 
 	@Override
 	public Page<Review> findReviewByDoctorId(String doctorId, Pageable pageable) {
@@ -155,50 +155,16 @@ public class QueryServiceImpl implements QueryService {
 		StringQuery stringQuery = new StringQuery(matchQuery("patientCode", patientCode).toString());
 		return Optional.of(elasticsearchOperations.queryForObject(stringQuery, Patient.class));
 	}
-	
 
 	@Override
 	public List<WorkPlace> findByLocationWithin(Point point, Distance distance) {
-		List<Doctor> doctor = new ArrayList<>();
-	List<WorkPlace> workplace =	 elasticsearchTemplate.queryForList(getGeoQuery(point, distance),WorkPlace.class);
 
-	for(WorkPlace wp:workplace ) {
-		 
-		System.out.println(">>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<"+wp.getDoctor());
-		 doctor.add(wp.getDoctor());
-		 System.out.println(">>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<"+doctor.size());
-	}
-	
-	
-	/* for(WorkPlace wp:workplace ) {
-			 doctor.add(wp.getDoctor());
-		 }*/return null;
-		
+		return elasticsearchTemplate.queryForList(getGeoQuery(point, distance), WorkPlace.class);
+
 	}
 
 	private CriteriaQuery getGeoQuery(Point point, Distance distance) {
 		return new CriteriaQuery(new Criteria("location").within(point, distance));
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
