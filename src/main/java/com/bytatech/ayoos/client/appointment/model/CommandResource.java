@@ -19,7 +19,7 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T11:23:29.803+05:30[Asia/Kolkata]")
 
 public class CommandResource   {
-  @JsonProperty("links")
+  @JsonProperty("_links")
   @Valid
   private List<Link> links = null;
 
