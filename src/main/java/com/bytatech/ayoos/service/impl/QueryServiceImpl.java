@@ -26,6 +26,7 @@ import com.bytatech.ayoos.client.doctor.model.*;
 import com.bytatech.ayoos.client.domain.TestDate;
 import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.service.QueryService;
+
 import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
 import com.github.vanroy.springdata.jest.aggregation.AggregatedPage;
 import com.github.vanroy.springdata.jest.mapper.JestResultsExtractor;
@@ -167,4 +168,35 @@ public class QueryServiceImpl implements QueryService {
 		return new CriteriaQuery(new Criteria("location").within(point, distance));
 	}
 
+
+	/* (non-Javadoc)
+	 * @see com.bytatech.ayoos.service.QueryService#findRatingByDoctorIdAndPatientName(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public UserRating findRatingByDoctorIdAndPatientName(String doctorId, String patientCode) {
+
+		StringQuery stringQuery = new StringQuery(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("doctor.doctorId", doctorId))
+				.must(QueryBuilders.termQuery("userName", patientCode)).toString());
+			
+		return elasticsearchOperations.queryForObject(stringQuery, UserRating.class);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see com.bytatech.ayoos.service.QueryService#findReviewByDoctorIdAndPatientName(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Review findReviewByDoctorIdAndPatientName(String doctorId, String patientCode) {
+		StringQuery stringQuery = new StringQuery(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("doctor.doctorId", doctorId))
+				.must(QueryBuilders.termQuery("userName", patientCode)).toString());
+			
+		return elasticsearchOperations.queryForObject(stringQuery, Review.class);
+	}
+
+	
+	@Override
+	public Page<Patient> findAllPatientWithoutSearch(Pageable pageable) {
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchAllQuery()).build();
+		return elasticsearchOperations.queryForPage(searchQuery, Patient.class);
+	}
 }

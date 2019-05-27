@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.Distance;
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bytatech.ayoos.client.doctor.api.ReservedSlotResourceApi;
+import com.bytatech.ayoos.client.doctor.api.ReviewResourceApi;
+import com.bytatech.ayoos.client.doctor.api.UserRatingResourceApi;
 import com.bytatech.ayoos.client.doctor.model.*;
 import com.bytatech.ayoos.client.doctor.model.ReservedSlotDTO;
 import com.bytatech.ayoos.client.doctor.model.Review;
@@ -42,6 +46,9 @@ import io.swagger.annotations.ApiParam;
 @RestController
 @RequestMapping("/api")
 public class QueryResource {
+	
+	private final Logger log = LoggerFactory.getLogger(QueryResource.class);
+	
 	@Autowired
 	ReservedSlotResourceApi reservedSlotResourceApi;
 	
@@ -53,6 +60,12 @@ public class QueryResource {
 	
 	@Autowired
 	QueryService queryService;
+	
+	@Autowired
+	UserRatingResourceApi userRatingResourceApi;
+	
+	@Autowired
+	ReviewResourceApi reviewResourceApi;
 
 	@GetMapping("/findAllDoctors")
 	public ResponseEntity<List<Doctor>> findAllDoctors(Pageable pageable) {
@@ -122,6 +135,7 @@ public class QueryResource {
 	}
 	
 	
+	
 	/*@GetMapping("/location/findByLocationWithin""/location/findByLocationWithin/{lat}/{lon}/{distance}")
 	public ResponseEntity<List<Doctor>> searchByLocationWithin(@PathVariable Double lat,
 			@PathVariable Double lon,@PathVariable Double distance, Pageable pageable) {
@@ -130,7 +144,48 @@ public class QueryResource {
 	}
 	*/
 	
-	
+	@GetMapping("/findRatingReview/{doctorId}")
+	public ResponseEntity<List<RatingReview>> findRatingReviewByStoreidAndCustomerName(@PathVariable String storeId,
+			/* @PathVariable String name */Pageable pageable) {
+		List<RatingReview> listOfRatingreview = new ArrayList<RatingReview>();
+
+		List<Patient> patientList = queryService.findAllPatientWithoutSearch(pageable).getContent();
+
+		for (Patient p : patientList) {
+			
+        log.info(">>>>>>>>>>>>>>>>>>> patient:   "+p+"   >>>>>>>>>>>>>>>>");
+        
+			UserRating rating = queryService.findRatingByDoctorIdAndPatientName(storeId,p.getPatientCode() );
+			
+			log.info(">>>>>>>>>>>>>>>>>>> rating:  "+rating+"   >>>>>>>>>>>>>>>>");
+			
+			Review review = queryService.findReviewByDoctorIdAndPatientName(storeId, p.getPatientCode());
+			
+			log.info(">>>>>>>>>>>>>>>>>>> review:  "+review+"   >>>>>>>>>>>>>>>>");
+			
+			if (rating != null) {
+				
+				RatingReview ratingReview = new RatingReview();
+
+				ratingReview.setRating(userRatingResourceApi.modelToDtoUsingPOST1(rating).getBody());
+
+				if(review!=null){
+					
+				ratingReview.setReview(reviewResourceApi.modelToDtoUsingPOST(review).getBody());
+				
+				}
+				
+				log.info(">>>>>>>>>>>>>>>>>>> ratingReview:  "+ratingReview+"   >>>>>>>>>>>>>>>>");
+				
+				listOfRatingreview.add(ratingReview);
+				
+				log.info(">>>>>>>>>>>>>>>>>>> listOfRatingreview:  "+listOfRatingreview+"   >>>>>>>>>>>>>>>>");
+			}
+		}
+
+		return ResponseEntity.ok().body(listOfRatingreview);
+
+	}
 	
 	
 	@GetMapping("/address-linesByPatientId/{patientId}")
@@ -153,5 +208,7 @@ public class QueryResource {
 		System.out.println("haiiiiiiiiiiii");
 		 queryService.findByLocationWithin(new Point(10.789428,76.573091),new Distance(5.00, Metrics.KILOMETERS) );
 	}
+	
+	
 	
 }

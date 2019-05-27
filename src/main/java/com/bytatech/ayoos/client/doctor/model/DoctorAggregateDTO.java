@@ -8,7 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
+
+import java.time.LocalDate;
+import java.util.Date;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -17,7 +19,7 @@ import javax.validation.constraints.*;
  * DoctorAggregateDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T10:37:31.354+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-25T12:19:39.021+05:30[Asia/Calcutta]")
 
 public class DoctorAggregateDTO   {
   @JsonProperty("contactInfo")
@@ -51,7 +53,7 @@ public class DoctorAggregateDTO   {
   private Long phoneNumber = null;
 
   @JsonProperty("practiceSince")
-  private OffsetDateTime practiceSince = null;
+  private LocalDate practiceSince = null;
 
   @JsonProperty("registerNumber")
   private String registerNumber = null;
@@ -265,7 +267,7 @@ public class DoctorAggregateDTO   {
     this.phoneNumber = phoneNumber;
   }
 
-  public DoctorAggregateDTO practiceSince(OffsetDateTime practiceSince) {
+  public DoctorAggregateDTO practiceSince(LocalDate practiceSince) {
     this.practiceSince = practiceSince;
     return this;
   }
@@ -278,11 +280,11 @@ public class DoctorAggregateDTO   {
 
   @Valid
 
-  public OffsetDateTime getPracticeSince() {
+  public LocalDate getPracticeSince() {
     return practiceSince;
   }
 
-  public void setPracticeSince(OffsetDateTime practiceSince) {
+  public void setPracticeSince(LocalDate practiceSince) {
     this.practiceSince = practiceSince;
   }
 

@@ -12,8 +12,11 @@ import com.bytatech.ayoos.client.patient.api.PatientResourceApi;
 import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.client.domain.*;
 import com.bytatech.ayoos.repository.search.DoctorSearchRepository;
+import com.bytatech.ayoos.service.QueryService;
 import com.bytatech.ayoos.repository.search.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,6 +33,14 @@ import com.bytatech.ayoos.client.doctor.api.*;
 @RestController
 @RequestMapping("/api")
 public class CommandResource {
+	
+	private final Logger log = LoggerFactory.getLogger(CommandResource.class);
+	
+	@Autowired
+	QueryService queryService;
+
+	@Autowired
+	DoctorResourceApi doctorResourceApi;
 	
 	@Autowired
 	AppointmentCommandResourceApi appointmentCommandResourceApi;
@@ -145,8 +156,64 @@ public class CommandResource {
 	@PostMapping("/patients/modelToDto")
 	public ResponseEntity<PatientDTO> modelToDto(@RequestBody Patient patient){
 		return patientResourceApi.modelToDtoUsingPOST(patient);
-		
+				
 	}
 	
+	@PostMapping("/rating-review")
+	public RatingReview createRatingAndReview(@RequestBody RatingReview ratingReview) {
+
+		UserRatingDTO userRatingDTO = ratingReview.getRating();
+		ReviewDTO reviewDTO = ratingReview.getReview();
+
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userRatingDTO + ">>>>>>>>>>>>>>>>>>>>>" + reviewDTO);
+		if (userRatingDTO.getRating() != null) {
+			log.info(">>>>>>>>>>>>>>>>>>>>>>>>IF>>>>>>>>>>>>>>>>>>>>>>");
+			DoctorDTO doctor = doctorResourceApi.getDoctorUsingGET(userRatingDTO.getDoctorId()).getBody();
+
+			UserRating alreadyRatedUser = queryService.findRatingByDoctorIdAndPatientName(doctor.getDoctorId(),
+					userRatingDTO.getUserName());
+			
+			log.info(">>>>>>>>>>>>>>>>>>>>>>alreadyRatedUser: >>>>>>>>>>>>>>>>>>>>>>>>" + alreadyRatedUser);
+
+			if (alreadyRatedUser == null) {
+				log.info("............create................");
+
+				ResponseEntity<ReviewDTO> review = reviewResourceApi.createReviewUsingPOST(reviewDTO);
+
+				ResponseEntity<UserRatingDTO> ratingDTO = userRatingResourceApi
+						.createUserRatingUsingPOST(userRatingDTO);
+				ratingReview.setRating(ratingDTO.getBody());
+				ratingReview.setReview(review.getBody());
+			} else {
+
+				if (alreadyRatedUser.getId() != null) {
+					log.info("....................UPDATE..............");
+
+					userRatingDTO.setId(alreadyRatedUser.getId());
+
+					log.info("................username:............" + userRatingDTO.getUserName()
+							+ "..........storeId..........." + doctor.getDoctorId() + "...........");
+
+					Review alreadyreviewed = queryService.findReviewByDoctorIdAndPatientName(doctor.getDoctorId(),
+							userRatingDTO.getUserName());
+
+					log.info("...................   " + alreadyreviewed + "     ...............");
+
+					reviewDTO.setId(alreadyreviewed.getId());
+
+					ResponseEntity<ReviewDTO> review = reviewResourceApi.updateReviewUsingPUT(reviewDTO);
+
+					ResponseEntity<UserRatingDTO> ratingDTO = userRatingResourceApi
+							.updateUserRatingUsingPUT(userRatingDTO);
+
+					ratingReview.setRating(ratingDTO.getBody());
+
+					ratingReview.setReview(review.getBody());
+				}
+			}
+
+		}
+		return ratingReview;
+	}
 
 }

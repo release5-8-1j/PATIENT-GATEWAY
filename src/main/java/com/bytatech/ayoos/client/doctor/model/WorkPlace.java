@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.GeoPointField;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -20,10 +19,8 @@ import javax.validation.constraints.*;
  * WorkPlace
  */
 @Validated
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:37:49.322+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-25T12:19:39.021+05:30[Asia/Calcutta]")
 @Document(indexName="workplace")
-
 public class WorkPlace   {
   @JsonProperty("doctor")
   private Doctor doctor = null;
@@ -32,7 +29,6 @@ public class WorkPlace   {
   private Long id = null;
 
   @JsonProperty("location")
-  @GeoPointField
   private String location = null;
 
   @JsonProperty("locationName")

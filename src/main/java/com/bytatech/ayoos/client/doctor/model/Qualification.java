@@ -16,10 +16,8 @@ import javax.validation.constraints.*;
  * Qualification
  */
 @Validated
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:37:49.322+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-25T12:19:39.021+05:30[Asia/Calcutta]")
 @Document(indexName="qualification")
-
 public class Qualification   {
   @JsonProperty("doctor")
   private Doctor doctor = null;

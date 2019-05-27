@@ -5,7 +5,10 @@
  */
 package com.bytatech.ayoos.client.doctor.api;
 
+import com.bytatech.ayoos.client.doctor.model.UserRating;
 import com.bytatech.ayoos.client.doctor.model.UserRatingDTO;
+
+
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,7 +28,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T10:37:31.354+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-25T12:19:39.021+05:30[Asia/Calcutta]")
 
 @Api(value = "UserRatingResource", description = "the UserRatingResource API")
 public interface UserRatingResourceApi {
@@ -115,5 +118,19 @@ public interface UserRatingResourceApi {
         consumes = "application/json",
         method = RequestMethod.PUT)
     ResponseEntity<UserRatingDTO> updateUserRatingUsingPUT(@ApiParam(value = "userRatingDTO" ,required=true )  @Valid @RequestBody UserRatingDTO userRatingDTO);
+
+    
+    @ApiOperation(value = "modelToDto", nickname = "modelToDtoUsingPOST1", notes = "", response = UserRatingDTO.class, tags={ "user-rating-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = UserRatingDTO.class),
+        @ApiResponse(code = 201, message = "Created"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/user-rating/modelToDto",
+        produces = "*/*", 
+        consumes = "application/json",
+        method = RequestMethod.POST)
+    ResponseEntity<UserRatingDTO> modelToDtoUsingPOST1(@ApiParam(value = "userRating" ,required=true )  @Valid @RequestBody UserRating userRating);
 
 }

@@ -40,6 +40,28 @@ public interface QueryService {
 	public  Optional<Doctor> findDoctorByDoctorId(String doctorId);
 
 	List<TestDate> findAllTestDates(Pageable pageable);
+
+	/**
+	 * @param doctorId
+	 * @param userName
+	 * @return
+	 */
+	public UserRating findRatingByDoctorIdAndPatientName(String doctorId, String patientCode);
+
+	/**
+	 * @param doctorIds
+	 * @param userName
+	 * @return
+	 */
+	public Review findReviewByDoctorIdAndPatientName(String doctorId, String patientCode);
+
+	/**
+	 * @param pageable
+	 * @return
+	 */
+	Page<Patient> findAllPatientWithoutSearch(Pageable pageable);
+
+
 	
 	
 	

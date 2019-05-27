@@ -7,7 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -19,9 +22,8 @@ import javax.validation.constraints.*;
  * Review
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:37:49.322+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-25T12:19:39.021+05:30[Asia/Calcutta]")
 @Document(indexName="review")
-
 public class Review   {
   @JsonProperty("doctor")
   private Doctor doctor = null;
@@ -35,6 +37,12 @@ public class Review   {
 
   @JsonProperty("review")
   private String review = null;
+
+  @JsonProperty("reviewedOn")
+  private LocalDate reviewedOn = null;
+
+  @JsonProperty("userName")
+  private String userName = null;
 
   public Review doctor(Doctor doctor) {
     this.doctor = doctor;
@@ -126,6 +134,47 @@ public class Review   {
     this.review = review;
   }
 
+  public Review reviewedOn(LocalDate reviewedOn) {
+    this.reviewedOn = reviewedOn;
+    return this;
+  }
+
+  /**
+   * Get reviewedOn
+   * @return reviewedOn
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public LocalDate getReviewedOn() {
+    return reviewedOn;
+  }
+
+  public void setReviewedOn(LocalDate reviewedOn) {
+    this.reviewedOn = reviewedOn;
+  }
+
+  public Review userName(String userName) {
+    this.userName = userName;
+    return this;
+  }
+
+  /**
+   * Get userName
+   * @return userName
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -139,12 +188,14 @@ public class Review   {
     return Objects.equals(this.doctor, review.doctor) &&
         Objects.equals(this.id, review.id) &&
         Objects.equals(this.replies, review.replies) &&
-        Objects.equals(this.review, review.review);
+        Objects.equals(this.review, review.review) &&
+        Objects.equals(this.reviewedOn, review.reviewedOn) &&
+        Objects.equals(this.userName, review.userName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(doctor, id, replies, review);
+    return Objects.hash(doctor, id, replies, review, reviewedOn, userName);
   }
 
   @Override
@@ -156,6 +207,8 @@ public class Review   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    replies: ").append(toIndentedString(replies)).append("\n");
     sb.append("    review: ").append(toIndentedString(review)).append("\n");
+    sb.append("    reviewedOn: ").append(toIndentedString(reviewedOn)).append("\n");
+    sb.append("    userName: ").append(toIndentedString(userName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

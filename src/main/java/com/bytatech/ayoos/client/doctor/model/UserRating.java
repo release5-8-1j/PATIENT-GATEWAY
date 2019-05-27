@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.validation.annotation.Validated;
@@ -17,10 +19,8 @@ import javax.validation.constraints.*;
  * UserRating
  */
 @Validated
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:37:49.322+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-25T12:19:39.021+05:30[Asia/Calcutta]")
 @Document(indexName="userrating")
-
 public class UserRating   {
   @JsonProperty("doctor")
   private Doctor doctor = null;
@@ -29,7 +29,7 @@ public class UserRating   {
   private Long id = null;
 
   @JsonProperty("ratedOn")
-  private OffsetDateTime ratedOn = null;
+  private LocalDate ratedOn = null;
 
   @JsonProperty("rating")
   private Double rating = null;
@@ -78,7 +78,7 @@ public class UserRating   {
     this.id = id;
   }
 
-  public UserRating ratedOn(OffsetDateTime ratedOn) {
+  public UserRating ratedOn(LocalDate ratedOn) {
     this.ratedOn = ratedOn;
     return this;
   }
@@ -91,11 +91,11 @@ public class UserRating   {
 
   @Valid
 
-  public OffsetDateTime getRatedOn() {
+  public LocalDate getRatedOn() {
     return ratedOn;
   }
 
-  public void setRatedOn(OffsetDateTime ratedOn) {
+  public void setRatedOn(LocalDate ratedOn) {
     this.ratedOn = ratedOn;
   }
 

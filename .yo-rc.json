@@ -1,40 +1,45 @@
 {
-  "generator-jhipster": {
-    "promptValues": {
-      "packageName": "com.bytatech.ayoos"
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "com.bytatech.ayoos"
+        },
+        "jhipsterVersion": "5.8.1",
+        "applicationType": "gateway",
+        "baseName": "patientgateway",
+        "packageName": "com.bytatech.ayoos",
+        "packageFolder": "com/bytatech/ayoos",
+        "serverPort": "8072",
+        "authenticationType": "oauth2",
+        "cacheProvider": "hazelcast",
+        "enableHibernateCache": false,
+        "websocket": false,
+        "databaseType": "sql",
+        "devDatabaseType": "mysql",
+        "prodDatabaseType": "mysql",
+        "searchEngine": "elasticsearch",
+        "messageBroker": false,
+        "serviceDiscoveryType": "eureka",
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "clientFramework": "angularX",
+        "useSass": false,
+        "clientPackageManager": "npm",
+        "testFrameworks": [],
+        "jhiPrefix": "jhi",
+        "entitySuffix": "",
+        "dtoSuffix": "DTO",
+        "otherModules": [],
+        "enableTranslation": false
     },
-    "jhipsterVersion": "5.8.1",
-    "applicationType": "gateway",
-    "baseName": "patientgateway",
-    "packageName": "com.bytatech.ayoos",
-    "packageFolder": "com/bytatech/ayoos",
-    "serverPort": "8072",
-    "authenticationType": "oauth2",
-    "cacheProvider": "hazelcast",
-    "enableHibernateCache": false,
-    "websocket": false,
-    "databaseType": "sql",
-    "devDatabaseType": "mysql",
-    "prodDatabaseType": "mysql",
-    "searchEngine": "elasticsearch",
-    "messageBroker": false,
-    "serviceDiscoveryType": "eureka",
-    "buildTool": "maven",
-    "enableSwaggerCodegen": false,
-    "clientFramework": "angularX",
-    "useSass": false,
-    "clientPackageManager": "npm",
-    "testFrameworks": [],
-    "jhiPrefix": "jhi",
-    "entitySuffix": "",
-    "dtoSuffix": "DTO",
-    "otherModules": [],
-    "enableTranslation": false
-  },
-  "generator-jhipster-swagger-cli": {
-    "promptValues": {
-      "inputSpec": "http://35.243.137.225:8090/v2/api-docs",
-      "cliName": "appointment"
+    "generator-jhipster-swagger-cli": {
+        "promptValues": {
+            "inputSpec": "http://35.243.137.225:8090/v2/api-docs",
+            "cliName": "appointment"
+        },
+        "apis": {
+            "doctor": {
+                "spec": "http://localhost:8083/v2/api-docs"
+            }
+        }
     }
-  }
 }

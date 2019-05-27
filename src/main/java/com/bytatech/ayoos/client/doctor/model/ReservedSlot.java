@@ -22,7 +22,7 @@ import javax.validation.constraints.*;
  * ReservedSlot
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T10:37:31.354+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-25T12:19:39.021+05:30[Asia/Calcutta]")
 @Document(indexName="reservedslot")
 public class ReservedSlot   {
   @JsonProperty("date")
@@ -249,3 +249,4 @@ public class ReservedSlot   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

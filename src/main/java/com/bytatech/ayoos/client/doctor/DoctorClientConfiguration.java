@@ -1,4 +1,4 @@
-package com.bytatech.ayoos.client.patient;
+package com.bytatech.ayoos.client.doctor;
 
 import com.bytatech.ayoos.client.ExcludeFromComponentScan;
 import feign.auth.BasicAuthRequestInterceptor;
@@ -19,6 +19,6 @@ import org.springframework.security.oauth2.client.token.grant.password.ResourceO
 @Configuration
 @ExcludeFromComponentScan
 @EnableConfigurationProperties
-public class ClientConfiguration {
+public class DoctorClientConfiguration {
 
 }

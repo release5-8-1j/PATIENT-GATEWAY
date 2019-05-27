@@ -28,6 +28,9 @@ import java.util.Collection;
     @ComponentScan.Filter(com.bytatech.ayoos.client.ExcludeFromComponentScan.class)
 })
 @EnableFeignClients
+@ComponentScan( excludeFilters = {
+    @ComponentScan.Filter(com.bytatech.ayoos.client.ExcludeFromComponentScan.class)
+})
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
 @EnableDiscoveryClient

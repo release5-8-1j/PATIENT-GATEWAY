@@ -15,8 +15,7 @@ import javax.validation.constraints.*;
  * PaymentSettings
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T10:37:31.354+05:30[Asia/Kolkata]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-25T12:19:39.021+05:30[Asia/Calcutta]")
 @Document(indexName="paymentsettings")
 public class PaymentSettings   {
   @JsonProperty("amount")

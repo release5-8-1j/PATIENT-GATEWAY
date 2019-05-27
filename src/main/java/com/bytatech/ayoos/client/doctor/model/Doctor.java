@@ -13,8 +13,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.ZonedDateTime;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -26,10 +28,8 @@ import javax.validation.constraints.*;
  * Doctor
  */
 @Validated
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-13T15:37:49.322+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-25T12:19:39.021+05:30[Asia/Calcutta]")
 @Document(indexName="doctor")
-
 public class Doctor   {
   @JsonProperty("contactInfo")
   private ContactInfo contactInfo = null;
@@ -62,7 +62,7 @@ public class Doctor   {
   private Long phoneNumber = null;
 
   @JsonProperty("practiceSince")
-  private ZonedDateTime practiceSince = null;
+  private LocalDate practiceSince = null;
 
   @JsonProperty("qualifications")
   @Valid
@@ -296,7 +296,7 @@ public class Doctor   {
     this.phoneNumber = phoneNumber;
   }
 
-  public Doctor practiceSince(ZonedDateTime practiceSince) {
+  public Doctor practiceSince(LocalDate practiceSince) {
     this.practiceSince = practiceSince;
     return this;
   }
@@ -309,11 +309,11 @@ public class Doctor   {
 
   @Valid
 
-  public ZonedDateTime getPracticeSince() {
+  public LocalDate getPracticeSince() {
     return practiceSince;
   }
 
-  public void setPracticeSince(ZonedDateTime practiceSince) {
+  public void setPracticeSince(LocalDate practiceSince) {
     this.practiceSince = practiceSince;
   }
 
