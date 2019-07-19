@@ -32,6 +32,8 @@ import com.bytatech.ayoos.client.doctor.model.ReservedSlotDTO;
 import com.bytatech.ayoos.client.doctor.model.Review;
 import com.bytatech.ayoos.client.doctor.model.WorkPlace;
 import com.bytatech.ayoos.client.domain.TestDate;
+import com.bytatech.ayoos.client.medicalnews.api.GoogleMedicalNewsApi;
+import com.bytatech.ayoos.client.medicalnews.model.GoogleMedicalNews;
 import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.client.patient.api.AddressLineResourceApi;
 import com.bytatech.ayoos.client.patient.api.PatientResourceApi;
@@ -46,26 +48,29 @@ import io.swagger.annotations.ApiParam;
 @RestController
 @RequestMapping("/api")
 public class QueryResource {
-	
+
 	private final Logger log = LoggerFactory.getLogger(QueryResource.class);
-	
+
 	@Autowired
 	ReservedSlotResourceApi reservedSlotResourceApi;
-	
+
 	@Autowired
 	AddressLineResourceApi addressLineResourceApi;
-	
+
 	@Autowired
 	PatientResourceApi patientResourceApi;
-	
+
 	@Autowired
 	QueryService queryService;
-	
+
 	@Autowired
 	UserRatingResourceApi userRatingResourceApi;
-	
+
 	@Autowired
 	ReviewResourceApi reviewResourceApi;
+
+	@Autowired
+	GoogleMedicalNewsApi googleApi;
 
 	@GetMapping("/findAllDoctors")
 	public ResponseEntity<List<Doctor>> findAllDoctors(Pageable pageable) {
@@ -77,10 +82,6 @@ public class QueryResource {
 		return queryService.findAllTestDates(pageable);
 	}
 
-	
-	
-	
-	
 	@GetMapping("/findAllQualification")
 	public List<String> findAllQualification(Pageable pageable) {
 		return queryService.findAllQualifications(pageable);
@@ -94,12 +95,15 @@ public class QueryResource {
 
 	}
 
-	/*@GetMapping("/findByLocationWithin")
-	public ResponseEntity<List<Doctor>> searchByLocation(@RequestParam("location") Double[] location,
-			@RequestParam("distance") Double distance, Pageable pageable) {
-		Point point = new Point(location[0], location[1]);
-		return ResponseEntity.ok().body(queryService.findByLocationWithin(point, new Distance(distance,Metrics.KILOMETERS), pageable).getContent());
-	}*/
+	/*
+	 * @GetMapping("/findByLocationWithin") public ResponseEntity<List<Doctor>>
+	 * searchByLocation(@RequestParam("location") Double[] location,
+	 * 
+	 * @RequestParam("distance") Double distance, Pageable pageable) { Point
+	 * point = new Point(location[0], location[1]); return
+	 * ResponseEntity.ok().body(queryService.findByLocationWithin(point, new
+	 * Distance(distance,Metrics.KILOMETERS), pageable).getContent()); }
+	 */
 
 	@GetMapping("/findReviewByDoctorId/{doctorId}")
 	public ResponseEntity<List<Review>> findReviewByDoctorId(@PathVariable String doctorId, Pageable pageable) {
@@ -118,32 +122,32 @@ public class QueryResource {
 		Optional<Patient> patient = queryService.findPatient(patientCode);
 		return ResponseUtil.wrapOrNotFound(patient);
 	}
-	
 
 	@GetMapping("/doctors/{doctorId}")
 	public ResponseEntity<Doctor> findDoctorByDoctorId(@PathVariable String doctorId) {
 		Optional<Doctor> doctor = queryService.findDoctorByDoctorId(doctorId);
 		return ResponseUtil.wrapOrNotFound(doctor);
 	}
-	
-	
+
 	@GetMapping("/test2/{date}/{doctorId}")
-	public ResponseEntity<List<ReservedSlotDTO>> test2(@PathVariable  String date, @PathVariable Long doctorId) {
-		
-		
+	public ResponseEntity<List<ReservedSlotDTO>> test2(@PathVariable String date, @PathVariable Long doctorId) {
+
 		return reservedSlotResourceApi.test2UsingGET(date, doctorId);
 	}
-	
-	
-	
-	/*@GetMapping("/location/findByLocationWithin""/location/findByLocationWithin/{lat}/{lon}/{distance}")
-	public ResponseEntity<List<Doctor>> searchByLocationWithin(@PathVariable Double lat,
-			@PathVariable Double lon,@PathVariable Double distance, Pageable pageable) {
-		Point point = new Point(10.789428,76.573091);
-		return ResponseEntity.ok().body(queryService.findByLocationWithin(point,new Distance(50.00, Metrics.KILOMETERS) new Distance(distance,Metrics.KILOMETERS), pageable).getContent());
-	}
-	*/
-	
+
+	/*
+	 * @GetMapping(
+	 * "/location/findByLocationWithin""/location/findByLocationWithin/{lat}/{lon}/{distance}")
+	 * public ResponseEntity<List<Doctor>> searchByLocationWithin(@PathVariable
+	 * Double lat,
+	 * 
+	 * @PathVariable Double lon,@PathVariable Double distance, Pageable
+	 * pageable) { Point point = new Point(10.789428,76.573091); return
+	 * ResponseEntity.ok().body(queryService.findByLocationWithin(point,new
+	 * Distance(50.00, Metrics.KILOMETERS) new
+	 * Distance(distance,Metrics.KILOMETERS), pageable).getContent()); }
+	 */
+
 	@GetMapping("/findRatingReview/{doctorId}")
 	public ResponseEntity<List<RatingReview>> findRatingReviewByStoreidAndCustomerName(@PathVariable String storeId,
 			/* @PathVariable String name */Pageable pageable) {
@@ -152,63 +156,72 @@ public class QueryResource {
 		List<Patient> patientList = queryService.findAllPatientWithoutSearch(pageable).getContent();
 
 		for (Patient p : patientList) {
-			
-        log.info(">>>>>>>>>>>>>>>>>>> patient:   "+p+"   >>>>>>>>>>>>>>>>");
-        
-			UserRating rating = queryService.findRatingByDoctorIdAndPatientName(storeId,p.getPatientCode() );
-			
-			log.info(">>>>>>>>>>>>>>>>>>> rating:  "+rating+"   >>>>>>>>>>>>>>>>");
-			
+
+			log.info(">>>>>>>>>>>>>>>>>>> patient:   " + p + "   >>>>>>>>>>>>>>>>");
+
+			UserRating rating = queryService.findRatingByDoctorIdAndPatientName(storeId, p.getPatientCode());
+
+			log.info(">>>>>>>>>>>>>>>>>>> rating:  " + rating + "   >>>>>>>>>>>>>>>>");
+
 			Review review = queryService.findReviewByDoctorIdAndPatientName(storeId, p.getPatientCode());
-			
-			log.info(">>>>>>>>>>>>>>>>>>> review:  "+review+"   >>>>>>>>>>>>>>>>");
-			
+
+			log.info(">>>>>>>>>>>>>>>>>>> review:  " + review + "   >>>>>>>>>>>>>>>>");
+
 			if (rating != null) {
-				
+
 				RatingReview ratingReview = new RatingReview();
 
 				ratingReview.setRating(userRatingResourceApi.modelToDtoUsingPOST1(rating).getBody());
 
-				if(review!=null){
-					
-				ratingReview.setReview(reviewResourceApi.modelToDtoUsingPOST(review).getBody());
-				
+				if (review != null) {
+
+					ratingReview.setReview(reviewResourceApi.modelToDtoUsingPOST(review).getBody());
+
 				}
-				
-				log.info(">>>>>>>>>>>>>>>>>>> ratingReview:  "+ratingReview+"   >>>>>>>>>>>>>>>>");
-				
+
+				log.info(">>>>>>>>>>>>>>>>>>> ratingReview:  " + ratingReview + "   >>>>>>>>>>>>>>>>");
+
 				listOfRatingreview.add(ratingReview);
-				
-				log.info(">>>>>>>>>>>>>>>>>>> listOfRatingreview:  "+listOfRatingreview+"   >>>>>>>>>>>>>>>>");
+
+				log.info(">>>>>>>>>>>>>>>>>>> listOfRatingreview:  " + listOfRatingreview + "   >>>>>>>>>>>>>>>>");
 			}
 		}
 
 		return ResponseEntity.ok().body(listOfRatingreview);
 
 	}
-	
-	
+
 	@GetMapping("/address-linesByPatientId/{patientId}")
-	public ResponseEntity<List<AddressLineDTO>> getAllAddressLinesByPatientId(@PathVariable("patientId") Long patientId) {
+	public ResponseEntity<List<AddressLineDTO>> getAllAddressLinesByPatientId(
+			@PathVariable("patientId") Long patientId) {
 		return addressLineResourceApi.getAllAddressLinesByPatientIdUsingGET(patientId);
 
 	}
-	
-	/*@GetMapping("/location/findByLocationWithin""/location/findByLocationWithin/{lat}/{lon}/{distance}")
-	public List<WorkPlace> searchByLocationWithin(@PathVariable Double lat,
-			@PathVariable Double lon,@PathVariable Double distance, Pageable pageable) {
-		Point point = new Point(10.789428,76.573091);
-		return queryService.findByLocationWithin(point,new Distance(50.00, Metrics.KILOMETERS) new Distance(distance,Metrics.KILOMETERS), pageable);
-	}
-	
-	*/
-	
+
+	/*
+	 * @GetMapping(
+	 * "/location/findByLocationWithin""/location/findByLocationWithin/{lat}/{lon}/{distance}")
+	 * public List<WorkPlace> searchByLocationWithin(@PathVariable Double lat,
+	 * 
+	 * @PathVariable Double lon,@PathVariable Double distance, Pageable
+	 * pageable) { Point point = new Point(10.789428,76.573091); return
+	 * queryService.findByLocationWithin(point,new Distance(50.00,
+	 * Metrics.KILOMETERS) new Distance(distance,Metrics.KILOMETERS), pageable);
+	 * }
+	 * 
+	 */
+
 	@GetMapping("/location/findByLocationWithin")
-	public void searchByLocationWithin(){
+	public void searchByLocationWithin() {
 		System.out.println("haiiiiiiiiiiii");
-		 queryService.findByLocationWithin(new Point(10.789428,76.573091),new Distance(5.00, Metrics.KILOMETERS) );
+		queryService.findByLocationWithin(new Point(10.789428, 76.573091), new Distance(5.00, Metrics.KILOMETERS));
 	}
-	
-	
-	
+
+	@GetMapping("/googleMedicalNews")
+	public ResponseEntity<GoogleMedicalNews> getMedicalNews() {
+
+		String sources = "medical-news-today";
+		String apiKey = "6ada41f2bee1449bb7323c480a6d6986";
+		return googleApi.getMedicalNews(sources, apiKey);
+	}
 }
