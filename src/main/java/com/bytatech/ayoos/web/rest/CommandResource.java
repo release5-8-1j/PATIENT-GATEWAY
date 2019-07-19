@@ -150,9 +150,6 @@ public class CommandResource {
 	
 	
 	
-	
-	
-	
 	@PostMapping("/patients/modelToDto")
 	public ResponseEntity<PatientDTO> modelToDto(@RequestBody Patient patient){
 		return patientResourceApi.modelToDtoUsingPOST(patient);

@@ -197,6 +197,12 @@ public class QueryResource {
 		return addressLineResourceApi.getAllAddressLinesByPatientIdUsingGET(patientId);
 
 	}
+	
+
+	@GetMapping("/Dr-slots/{date}/{doctorId}")
+	public ResponseEntity<List<ReservedSlotDTO>> findSlots(@PathVariable String date, @PathVariable Long doctorId){
+		return reservedSlotResourceApi.test2UsingGET(date, doctorId);
+	}
 
 	/*
 	 * @GetMapping(
