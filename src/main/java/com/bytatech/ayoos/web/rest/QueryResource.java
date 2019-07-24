@@ -197,10 +197,9 @@ public class QueryResource {
 		return addressLineResourceApi.getAllAddressLinesByPatientIdUsingGET(patientId);
 
 	}
-	
 
 	@GetMapping("/Dr-slots/{date}/{doctorId}")
-	public ResponseEntity<List<ReservedSlotDTO>> findSlots(@PathVariable String date, @PathVariable Long doctorId){
+	public ResponseEntity<List<ReservedSlotDTO>> findSlots(@PathVariable String date, @PathVariable Long doctorId) {
 		return reservedSlotResourceApi.test2UsingGET(date, doctorId);
 	}
 
@@ -217,10 +216,16 @@ public class QueryResource {
 	 * 
 	 */
 
-	@GetMapping("/location/findByLocationWithin")
-	public void searchByLocationWithin() {
-		System.out.println("haiiiiiiiiiiii");
-		queryService.findByLocationWithin(new Point(10.789428, 76.573091), new Distance(5.00, Metrics.KILOMETERS));
+	@GetMapping("/location/findByNearestLocation/{latLon}/{kiloMeter}")
+	public List<WorkPlace> searchByNearestLocation(@PathVariable String latLon, @PathVariable Double kiloMeter) {
+
+		String[] latLons = latLon.split(",");
+
+		double lat = Double.parseDouble(latLons[0]);
+
+		double lon = Double.parseDouble(latLons[1]);
+
+		return queryService.findByLocationWithin(new Point(lat, lon), new Distance(kiloMeter, Metrics.KILOMETERS));
 	}
 
 	@GetMapping("/googleMedicalNews")
