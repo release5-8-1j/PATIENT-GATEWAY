@@ -149,7 +149,7 @@ public class QueryResource {
 	 */
 
 	@GetMapping("/findRatingReview/{doctorId}")
-	public ResponseEntity<List<RatingReview>> findRatingReviewByStoreidAndCustomerName(@PathVariable String storeId,
+	public ResponseEntity<List<RatingReview>> findRatingReviewByStoreidAndCustomerName(@PathVariable String doctorId,
 			/* @PathVariable String name */Pageable pageable) {
 		List<RatingReview> listOfRatingreview = new ArrayList<RatingReview>();
 
@@ -159,11 +159,11 @@ public class QueryResource {
 
 			log.info(">>>>>>>>>>>>>>>>>>> patient:   " + p + "   >>>>>>>>>>>>>>>>");
 
-			UserRating rating = queryService.findRatingByDoctorIdAndPatientName(storeId, p.getPatientCode());
+			UserRating rating = queryService.findRatingByDoctorIdAndPatientName(doctorId, p.getPatientCode());
 
 			log.info(">>>>>>>>>>>>>>>>>>> rating:  " + rating + "   >>>>>>>>>>>>>>>>");
 
-			Review review = queryService.findReviewByDoctorIdAndPatientName(storeId, p.getPatientCode());
+			Review review = queryService.findReviewByDoctorIdAndPatientName(doctorId, p.getPatientCode());
 
 			log.info(">>>>>>>>>>>>>>>>>>> review:  " + review + "   >>>>>>>>>>>>>>>>");
 

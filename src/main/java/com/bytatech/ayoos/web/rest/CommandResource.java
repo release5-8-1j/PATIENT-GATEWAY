@@ -189,7 +189,7 @@ public class CommandResource {
 					userRatingDTO.setId(alreadyRatedUser.getId());
 
 					log.info("................username:............" + userRatingDTO.getUserName()
-							+ "..........storeId..........." + doctor.getDoctorId() + "...........");
+							+ "..........doctorId..........." + doctor.getDoctorId() + "...........");
 
 					Review alreadyreviewed = queryService.findReviewByDoctorIdAndPatientName(doctor.getDoctorId(),
 							userRatingDTO.getUserName());
