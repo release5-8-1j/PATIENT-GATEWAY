@@ -1,6 +1,7 @@
 package com.bytatech.ayoos.web.rest;
 import com.bytatech.ayoos.client.appointment.api.*;
 import com.bytatech.ayoos.client.appointment.model.AdditionalInformationRequest;
+import com.bytatech.ayoos.client.appointment.model.AppointmentConfirmationRequest;
 import com.bytatech.ayoos.client.appointment.model.AppointmentRequest;
 import com.bytatech.ayoos.client.appointment.model.ConsultationDetails;
 import com.bytatech.ayoos.client.appointment.model.PaymentConfirmationRequest;
@@ -128,6 +129,11 @@ public class CommandResource {
 	@PostMapping("/appointments/processPayment/{taskId}")
 	public ResponseEntity<com.bytatech.ayoos.client.appointment.model.CommandResource> createProcessPayment(@PathVariable("taskId") String taskId,@RequestBody ProcessPayment processPayment) {
 		return appointmentCommandResourceApi.processPaymentUsingPOST(taskId, processPayment);
+	}
+	
+	@PostMapping("/appointments/sendAppointmentRequest/{taskId}")
+	public ResponseEntity<com.bytatech.ayoos.client.appointment.model.CommandResource> sendAppointmentRequest(@PathVariable String taskId,@RequestBody AppointmentConfirmationRequest appointmentConfirmationRequest) {
+		return appointmentCommandResourceApi.sendAppointmentRequestUsingPOST(taskId, appointmentConfirmationRequest);
 	}
 	@GetMapping("/_search")
     public Page<TestDate> search() {
