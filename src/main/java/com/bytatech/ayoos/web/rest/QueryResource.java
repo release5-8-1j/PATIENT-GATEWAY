@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bytatech.ayoos.client.appointment.model.Appointment;
 import com.bytatech.ayoos.client.doctor.api.ReservedSlotResourceApi;
 import com.bytatech.ayoos.client.doctor.api.ReviewResourceApi;
 import com.bytatech.ayoos.client.doctor.api.UserRatingResourceApi;
@@ -93,6 +94,11 @@ public class QueryResource {
 		return ResponseEntity.ok()
 				.body(queryService.facetSearch(specialization, rating, feeFrom, feeTo, pageable).getContent());
 
+	}
+	
+	@GetMapping("/appointments/findByTrackingId/{trackingId}")
+	public ResponseEntity<Appointment> findAppointmentByTrackingId(@PathVariable String trackingId){
+		return  ResponseEntity.ok().body(queryService.findAppointmentByTrackingId(trackingId).get());
 	}
 
 	/*

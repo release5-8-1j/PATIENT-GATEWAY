@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bytatech.ayoos.client.appointment.model.Appointment;
 import com.bytatech.ayoos.client.doctor.model.*;
 import com.bytatech.ayoos.client.domain.TestDate;
 import com.bytatech.ayoos.client.patient.model.*;
@@ -90,6 +91,13 @@ public class QueryServiceImpl implements QueryService {
 		StringQuery stringQuery = new StringQuery(termQuery("doctorId", doctorId).toString());
 		return Optional.of(elasticsearchOperations.queryForObject(stringQuery, Doctor.class));
 	}
+	
+	@Override
+	public Optional<Appointment> findAppointmentByTrackingId(String trackingId){
+		
+		StringQuery stringQuery=new StringQuery(termQuery("trackingId.keyword", trackingId).toString());
+		return Optional.of(elasticsearchOperations.queryForObject(stringQuery, Appointment.class));
+	}
 
 	@Override
 	public List<String> findAllQualifications(Pageable pageable) {
@@ -132,6 +140,9 @@ public class QueryServiceImpl implements QueryService {
 		return elasticsearchOperations.queryForPage(searchQuery, Doctor.class);
 	}
 
+	
+	
+	
 	@Override
 	public Page<Review> findReviewByDoctorId(String doctorId, Pageable pageable) {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery("doctor.doctorId", doctorId))

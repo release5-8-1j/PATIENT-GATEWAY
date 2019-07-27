@@ -8,6 +8,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
 
+import com.bytatech.ayoos.client.appointment.model.Appointment;
 import com.bytatech.ayoos.client.doctor.model.*;
 import com.bytatech.ayoos.client.domain.TestDate;
 import com.bytatech.ayoos.client.patient.model.*;
@@ -17,6 +18,7 @@ public interface QueryService {
 
 	// search using QueryDsl(MATCHALL QUERY)
 	public Page<Doctor> findAllDoctors(Pageable pageable);
+	public Optional<Appointment> findAppointmentByTrackingId(String trackingId);
 
 	public List<String> findAllQualifications(Pageable pageable);
 
