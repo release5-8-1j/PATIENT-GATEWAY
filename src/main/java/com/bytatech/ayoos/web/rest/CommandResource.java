@@ -11,6 +11,9 @@ import com.bytatech.ayoos.client.doctor.model.*;
 import com.bytatech.ayoos.client.patient.api.CommandResourceApi;
 import com.bytatech.ayoos.client.patient.api.PatientResourceApi;
 import com.bytatech.ayoos.client.patient.model.*;
+import com.bytatech.ayoos.client.payment.api.RazorpayCommandResourceApi;
+import com.bytatech.ayoos.client.payment.model.OrderRequest;
+import com.bytatech.ayoos.client.payment.model.OrderResponse;
 import com.bytatech.ayoos.client.domain.*;
 import com.bytatech.ayoos.repository.search.DoctorSearchRepository;
 import com.bytatech.ayoos.service.QueryService;
@@ -46,6 +49,8 @@ public class CommandResource {
 	@Autowired
 	AppointmentCommandResourceApi appointmentCommandResourceApi;
 	
+	@Autowired
+	RazorpayCommandResourceApi razorpayCommandResource;
 	
 	@Autowired
 	CommandResourceApi patientcommandResourceApi;
@@ -146,7 +151,10 @@ public class CommandResource {
     	return doctorSearchRepository.findAll(pageRequest);
     }
 	
-	
+	@PostMapping("/payment/createOrder")
+	public ResponseEntity<OrderResponse> createOrderPayment(@RequestBody OrderRequest orderRequest) {
+		return razorpayCommandResource.createOrderUsingPOST(orderRequest);
+	}
 	
 	
 /*	@PostMapping("/appointments/processPayment/{taskId}")
