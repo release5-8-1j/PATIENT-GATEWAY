@@ -235,4 +235,5 @@ public class QueryResource {
 		String apiKey = "6ada41f2bee1449bb7323c480a6d6986";
 		return googleApi.getMedicalNews(sources, apiKey);
 	}
+	
 }
