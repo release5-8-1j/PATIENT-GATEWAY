@@ -210,8 +210,8 @@ jhipster:
 
 application:
 doctor:
-   url: 34.68.84.96:8083
+   url: 35.229.27.47:8083
 
 patient:  
-   url: 34.68.84.96:8081
+   url: 35.229.27.47:8098
   
