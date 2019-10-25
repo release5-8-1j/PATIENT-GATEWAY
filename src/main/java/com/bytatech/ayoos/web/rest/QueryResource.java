@@ -32,7 +32,7 @@ import com.bytatech.ayoos.client.doctor.model.*;
 import com.bytatech.ayoos.client.doctor.model.ReservedSlotDTO;
 import com.bytatech.ayoos.client.doctor.model.Review;
 import com.bytatech.ayoos.client.doctor.model.WorkPlace;
-import com.bytatech.ayoos.client.domain.TestDate;
+
 import com.bytatech.ayoos.client.medicalnews.api.GoogleMedicalNewsApi;
 import com.bytatech.ayoos.client.medicalnews.model.GoogleMedicalNews;
 import com.bytatech.ayoos.client.patient.model.*;
@@ -73,16 +73,12 @@ public class QueryResource {
 	@Autowired
 	GoogleMedicalNewsApi googleApi;
 
-	@GetMapping("/findAllDoctors")
+/*	@GetMapping("/findAllDoctors")
 	public ResponseEntity<List<Doctor>> findAllDoctors(Pageable pageable) {
 		return ResponseEntity.ok().body(queryService.findAllDoctors(pageable).getContent());
-	}
+	}*/
 
-	@GetMapping("/findAllDates")
-	public List<TestDate> findAllDates(Pageable pageable) {
-		return queryService.findAllTestDates(pageable);
-	}
-
+	/*
 	@GetMapping("/findAllQualification")
 	public List<String> findAllQualification(Pageable pageable) {
 		return queryService.findAllQualifications(pageable);
@@ -94,12 +90,12 @@ public class QueryResource {
 		return ResponseEntity.ok()
 				.body(queryService.facetSearch(specialization, rating, feeFrom, feeTo, pageable).getContent());
 
-	}
+	}*/
 	
-	@GetMapping("/appointments/findByTrackingId/{trackingId}")
+	/*@GetMapping("/appointments/findByTrackingId/{trackingId}")
 	public ResponseEntity<Appointment> findAppointmentByTrackingId(@PathVariable String trackingId){
 		return  ResponseEntity.ok().body(queryService.findAppointmentByTrackingId(trackingId).get());
-	}
+	}*/
 
 	/*
 	 * @GetMapping("/findByLocationWithin") public ResponseEntity<List<Doctor>>
@@ -111,7 +107,7 @@ public class QueryResource {
 	 * Distance(distance,Metrics.KILOMETERS), pageable).getContent()); }
 	 */
 
-	@GetMapping("/findReviewByDoctorId/{doctorId}")
+	/*@GetMapping("/findReviewByDoctorId/{doctorId}")
 	public ResponseEntity<List<Review>> findReviewByDoctorId(@PathVariable String doctorId, Pageable pageable) {
 		return ResponseEntity.ok().body(queryService.findReviewByDoctorId(doctorId, pageable).getContent());
 
@@ -133,7 +129,7 @@ public class QueryResource {
 	public ResponseEntity<Doctor> findDoctorByDoctorId(@PathVariable String doctorId) {
 		Optional<Doctor> doctor = queryService.findDoctorByDoctorId(doctorId);
 		return ResponseUtil.wrapOrNotFound(doctor);
-	}
+	}*/
 
 	@GetMapping("/test2/{date}/{doctorId}")
 	public ResponseEntity<List<ReservedSlotDTO>> test2(@PathVariable String date, @PathVariable Long doctorId) {
@@ -153,10 +149,10 @@ public class QueryResource {
 	 * Distance(50.00, Metrics.KILOMETERS) new
 	 * Distance(distance,Metrics.KILOMETERS), pageable).getContent()); }
 	 */
-
+/*
 	@GetMapping("/findRatingReview/{doctorId}")
 	public ResponseEntity<List<RatingReview>> findRatingReviewByStoreidAndCustomerName(@PathVariable String doctorId,
-			/* @PathVariable String name */Pageable pageable) {
+			 @PathVariable String name Pageable pageable) {
 		List<RatingReview> listOfRatingreview = new ArrayList<RatingReview>();
 
 		List<Patient> patientList = queryService.findAllPatientWithoutSearch(pageable).getContent();
@@ -196,7 +192,7 @@ public class QueryResource {
 		return ResponseEntity.ok().body(listOfRatingreview);
 
 	}
-
+*/
 	@GetMapping("/address-linesByPatientId/{patientId}")
 	public ResponseEntity<List<AddressLineDTO>> getAllAddressLinesByPatientId(
 			@PathVariable("patientId") Long patientId) {
@@ -222,7 +218,7 @@ public class QueryResource {
 	 * 
 	 */
 
-	@GetMapping("/location/findByNearestLocation/{latLon}/{kiloMeter}")
+/*	@GetMapping("/location/findByNearestLocation/{latLon}/{kiloMeter}")
 	public List<WorkPlace> searchByNearestLocation(@PathVariable String latLon, @PathVariable Double kiloMeter) {
 
 		String[] latLons = latLon.split(",");
@@ -232,7 +228,7 @@ public class QueryResource {
 		double lon = Double.parseDouble(latLons[1]);
 
 		return queryService.findByLocationWithin(new Point(lat, lon), new Distance(kiloMeter, Metrics.KILOMETERS));
-	}
+	}*/
 
 	@GetMapping("/googleMedicalNews")
 	public ResponseEntity<GoogleMedicalNews> getMedicalNews() {

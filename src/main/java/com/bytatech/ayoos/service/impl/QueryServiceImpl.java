@@ -13,10 +13,10 @@ import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+/*import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
-import org.springframework.data.elasticsearch.core.query.StringQuery;
+import org.springframework.data.elasticsearch.core.query.StringQuery;*/
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
@@ -24,26 +24,17 @@ import org.slf4j.LoggerFactory;
 
 import com.bytatech.ayoos.client.appointment.model.Appointment;
 import com.bytatech.ayoos.client.doctor.model.*;
-import com.bytatech.ayoos.client.domain.TestDate;
+
 import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.service.QueryService;
 
-import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
-import com.github.vanroy.springdata.jest.aggregation.AggregatedPage;
-import com.github.vanroy.springdata.jest.mapper.JestResultsExtractor;
-import com.github.vanroy.springdata.jest.mapper.JestSearchResultMapper;
+
 import com.google.gson.JsonObject;
 
-import io.searchbox.client.JestClient;
-import io.searchbox.core.SearchResult;
-import io.searchbox.core.SearchResult.Hit;
-import io.searchbox.core.search.aggregation.TermsAggregation;
-import io.searchbox.core.search.aggregation.TermsAggregation.*;
+
 
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
-import org.springframework.data.elasticsearch.core.query.Criteria;
-import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 
 /**
  * Query Service Implementation
@@ -52,19 +43,10 @@ import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 @Transactional
 public class QueryServiceImpl implements QueryService {
 
-	private final Logger log = LoggerFactory.getLogger(QueryServiceImpl.class);
-	private final JestClient jestClient;
-	private final JestElasticsearchTemplate elasticsearchTemplate;
+	
 
-	public QueryServiceImpl(JestClient jestClient) {
-		this.jestClient = jestClient;
-		this.elasticsearchTemplate = new JestElasticsearchTemplate(this.jestClient);
-	}
 
-	@Autowired
-	ElasticsearchOperations elasticsearchOperations;
-
-	@Override
+	/*@Override
 	public Page<Doctor> findAllDoctors(Pageable pageable) {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchAllQuery()).build();
 		List<Doctor> d = elasticsearchOperations.queryForList(searchQuery, Doctor.class);
@@ -136,7 +118,7 @@ public class QueryServiceImpl implements QueryService {
 				.withFilter(QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("specialization", specialization))
 						.should(QueryBuilders.matchQuery("totalRatings", ratings))
 						.should(QueryBuilders.rangeQuery("paymentSettings.amount").gte("fr").lte("to"))
-				/* .should(QueryBuilders.matchQuery("workplace.name", workplaceName)) */).build();
+				 .should(QueryBuilders.matchQuery("workplace.name", workplaceName)) ).build();
 		return elasticsearchOperations.queryForPage(searchQuery, Doctor.class);
 	}
 
@@ -180,9 +162,9 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 
-	/* (non-Javadoc)
+	 (non-Javadoc)
 	 * @see com.bytatech.ayoos.service.QueryService#findRatingByDoctorIdAndPatientName(java.lang.String, java.lang.String)
-	 */
+	 
 	@Override
 	public UserRating findRatingByDoctorIdAndPatientName(String doctorId, String patientCode) {
 
@@ -193,9 +175,9 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 
-	/* (non-Javadoc)
+	 (non-Javadoc)
 	 * @see com.bytatech.ayoos.service.QueryService#findReviewByDoctorIdAndPatientName(java.lang.String, java.lang.String)
-	 */
+	 
 	@Override
 	public Review findReviewByDoctorIdAndPatientName(String doctorId, String patientCode) {
 		StringQuery stringQuery = new StringQuery(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("doctor.doctorId", doctorId))
@@ -209,5 +191,5 @@ public class QueryServiceImpl implements QueryService {
 	public Page<Patient> findAllPatientWithoutSearch(Pageable pageable) {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchAllQuery()).build();
 		return elasticsearchOperations.queryForPage(searchQuery, Patient.class);
-	}
+	}*/
 }

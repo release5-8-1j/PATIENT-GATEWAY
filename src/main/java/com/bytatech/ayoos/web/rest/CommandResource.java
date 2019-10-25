@@ -21,7 +21,7 @@ import com.bytatech.ayoos.client.payment.api.RazorpayCommandResourceApi;
 import com.bytatech.ayoos.client.payment.model.OrderRequest;
 import com.bytatech.ayoos.client.payment.model.OrderResponse;
 import com.bytatech.ayoos.client.domain.*;
-import com.bytatech.ayoos.repository.search.DoctorSearchRepository;
+
 import com.bytatech.ayoos.service.QueryService;
 import com.bytatech.ayoos.repository.search.*;
 
@@ -77,12 +77,8 @@ public class CommandResource {
 	@Autowired
 	PatientResourceApi patientResourceApi;
 
-	@Autowired
-	DoctorSearchRepository doctorSearchRepository;
-
-	@Autowired
-	TestDateSearchRepository testDateSearchRepository;
-	private Pageable pageRequest = new PageRequest(0, 10);
+	
+	
 
 	@PostMapping("/rating")
 	public ResponseEntity<UserRatingDTO> ratedoctor(@RequestBody UserRatingDTO userRatingDTO) {
@@ -125,7 +121,7 @@ public class CommandResource {
 				additionalInformationRequest);
 	}
 
-	@PostMapping("/appointments/collectAdditionalDetails/{taskId}/{trackingId}")
+	/*@PostMapping("/appointments/collectAdditionalDetails/{taskId}/{trackingId}")
 	public ResponseEntity<com.bytatech.ayoos.client.appointment.model.CommandResource> createCollectAdditionalDetails(
 			@PathVariable("taskId") String taskId, @PathVariable("trackingId") String trackingId,
 			@RequestBody ConsultationDetails consultationDetails) {
@@ -157,7 +153,7 @@ public class CommandResource {
 		appointmentCommandResourceApi.updateAppointmentUsingPUT(result1);
 		return appointmentCommandResourceApi.collectAdditionalDetailsUsingPOST(taskId, consultationDetails);
 	}
-
+*/
 	@PostMapping("/appointments/confirmPayment/{taskId}")
 	public ResponseEntity<com.bytatech.ayoos.client.appointment.model.CommandResource> createConfirmPayment(
 			@PathVariable("taskId") String taskId, @RequestBody PaymentConfirmationRequest paymentConfirmationRequest) {
@@ -191,7 +187,7 @@ public class CommandResource {
 		return appointmentCommandResourceApi.sendAppointmentRequestUsingPOST(taskId, appointmentConfirmationRequest);
 	}
 
-	@GetMapping("/_search")
+/*	@GetMapping("/_search")
 	public Page<TestDate> search() {
 		return testDateSearchRepository.findAll(pageRequest);
 	}
@@ -199,7 +195,7 @@ public class CommandResource {
 	@GetMapping("/doctorsearch")
 	public Page<Doctor> doctorSearch() {
 		return doctorSearchRepository.findAll(pageRequest);
-	}
+	}*/
 
 	@PostMapping("/payment/createOrder")
 	public ResponseEntity<OrderResponse> createOrderPayment(@RequestBody OrderRequest orderRequest) {
@@ -221,7 +217,7 @@ public class CommandResource {
 
 	}
 
-	@PostMapping("/rating-review")
+	/*@PostMapping("/rating-review")
 	public RatingReview createRatingAndReview(@RequestBody RatingReview ratingReview) {
 
 		UserRatingDTO userRatingDTO = ratingReview.getRating();
@@ -277,5 +273,5 @@ public class CommandResource {
 		}
 		return ratingReview;
 	}
-
+*/
 }

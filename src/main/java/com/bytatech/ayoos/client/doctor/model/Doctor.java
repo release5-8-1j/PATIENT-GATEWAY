@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.elasticsearch.annotations.Document;
+//import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -29,7 +29,7 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-25T12:19:39.021+05:30[Asia/Calcutta]")
-@Document(indexName="doctor")
+//@Document(indexName="doctor")
 public class Doctor   {
   @JsonProperty("contactInfo")
   private ContactInfo contactInfo = null;

@@ -10,14 +10,14 @@ import org.springframework.data.geo.Point;
 
 import com.bytatech.ayoos.client.appointment.model.Appointment;
 import com.bytatech.ayoos.client.doctor.model.*;
-import com.bytatech.ayoos.client.domain.TestDate;
+
 import com.bytatech.ayoos.client.patient.model.*;
 
 
 public interface QueryService {
 
 	// search using QueryDsl(MATCHALL QUERY)
-	public Page<Doctor> findAllDoctors(Pageable pageable);
+	/*public Page<Doctor> findAllDoctors(Pageable pageable);
 	public Optional<Appointment> findAppointmentByTrackingId(String trackingId);
 
 	public List<String> findAllQualifications(Pageable pageable);
@@ -31,10 +31,10 @@ public interface QueryService {
 	public Page<Review> findReviewByDoctorId(String doctorId, Pageable pageable);
 
 
-	/**
+	*//**
 	 * @param searchTerm
 	 * @return
-	 */
+	 *//*
 	public Page<Doctor> findDoctors(String searchTerm,Pageable pageable);
 
 	public Optional<Patient> findPatient(String patientCode);
@@ -43,24 +43,24 @@ public interface QueryService {
 
 	List<TestDate> findAllTestDates(Pageable pageable);
 
-	/**
+	*//**
 	 * @param doctorId
 	 * @param userName
 	 * @return
-	 */
+	 *//*
 	public UserRating findRatingByDoctorIdAndPatientName(String doctorId, String patientCode);
 
-	/**
+	*//**
 	 * @param doctorIds
 	 * @param userName
 	 * @return
-	 */
+	 *//*
 	public Review findReviewByDoctorIdAndPatientName(String doctorId, String patientCode);
 
-	/**
+	*//**
 	 * @param pageable
 	 * @return
-	 */
+	 *//*
 	Page<Patient> findAllPatientWithoutSearch(Pageable pageable);
 
 
@@ -68,7 +68,7 @@ public interface QueryService {
 	
 	
 	
-	
+	*/
 	
 	
 	

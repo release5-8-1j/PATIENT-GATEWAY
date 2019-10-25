@@ -15,14 +15,14 @@
  */
 package com.bytatech.ayoos.client.patient.model;
 
-import org.springframework.data.elasticsearch.annotations.Document;
+
 
 /**
  * TODO Provide a detailed description here 
  * @author MayaSanjeev
  * mayabytatech, maya.k.k@lxisoft.com
  */
-@Document(indexName="statusbar")
+//@Document(indexName="statusbar")
 public class StatusBar {
 
 	private String statusName;

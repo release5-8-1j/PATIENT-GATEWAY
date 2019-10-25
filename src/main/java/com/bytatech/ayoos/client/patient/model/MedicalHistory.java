@@ -15,18 +15,18 @@
  */
 package com.bytatech.ayoos.client.patient.model;
 
-import java.time.LocalDate;
+/*import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import com.bytatech.ayoos.client.doctor.model.Doctor;
 
-/**
+*//**
  * TODO Provide a detailed description here 
  * @author MayaSanjeev
  * mayabytatech, maya.k.k@lxisoft.com
- */
+ *//*
 @Document(indexName="medicalhistory")
 public class MedicalHistory {
 
@@ -154,5 +154,5 @@ public class MedicalHistory {
 	
 	
 	
-	
-}
+	*/
+//}
