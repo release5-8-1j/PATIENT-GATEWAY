@@ -20,10 +20,10 @@ import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.client.payment.api.RazorpayCommandResourceApi;
 import com.bytatech.ayoos.client.payment.model.OrderRequest;
 import com.bytatech.ayoos.client.payment.model.OrderResponse;
-import com.bytatech.ayoos.client.domain.*;
+//import com.bytatech.ayoos.client.domain.*;
 
 import com.bytatech.ayoos.service.QueryService;
-import com.bytatech.ayoos.repository.search.*;
+//import com.bytatech.ayoos.repository.search.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

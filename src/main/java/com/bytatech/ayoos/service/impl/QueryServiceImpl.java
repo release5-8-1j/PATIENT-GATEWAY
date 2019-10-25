@@ -1,6 +1,6 @@
 package com.bytatech.ayoos.service.impl;
 
-import java.util.*;
+/*import java.util.*;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 import static org.elasticsearch.action.search.SearchType.QUERY_THEN_FETCH;
@@ -13,11 +13,11 @@ import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-/*import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+*/
+/*import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.data.elasticsearch.core.query.StringQuery;*/
-import org.springframework.stereotype.Service;
+/*import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,21 +27,20 @@ import com.bytatech.ayoos.client.doctor.model.*;
 
 import com.bytatech.ayoos.client.patient.model.*;
 import com.bytatech.ayoos.service.QueryService;
+*/
 
 
-import com.google.gson.JsonObject;
 
 
 
-import org.springframework.data.geo.Distance;
-import org.springframework.data.geo.Point;
+
 
 /**
  * Query Service Implementation
  */
-@Service
-@Transactional
-public class QueryServiceImpl implements QueryService {
+/*@Service
+@Transactional*/
+public class QueryServiceImpl /*implements QueryService*/ {
 
 	
 
