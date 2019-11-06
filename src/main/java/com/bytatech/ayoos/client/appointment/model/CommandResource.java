@@ -16,150 +16,179 @@ import javax.validation.constraints.*;
  * CommandResource
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T11:23:29.803+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-06T12:46:25.612+05:30[Asia/Kolkata]")
 
-public class CommandResource {
-	@JsonProperty("_links")
-	@Valid
-	private List<Link> links = null;
-	@JsonProperty("trackingId")
-	private String trackingId;
-	@JsonProperty("nextTaskId")
-	private String nextTaskId;
-	@JsonProperty("taskName")
-	private String taskName;
+public class CommandResource   {
+  @JsonProperty("links")
+  @Valid
+  private List<Link> links = null;
 
-	/**
-	 * @return the trackingId
-	 */
-	public String getTrackingId() {
-		return trackingId;
-	}
+  @JsonProperty("nextTaskId")
+  private String nextTaskId = null;
 
-	/**
-	 * @param trackingId the trackingId to set
-	 */
-	public void setTrackingId(String trackingId) {
-		this.trackingId = trackingId;
-	}
+  @JsonProperty("status")
+  private String status = null;
 
-	/**
-	 * @return the nextTaskId
-	 */
-	public String getNextTaskId() {
-		return nextTaskId;
-	}
+  @JsonProperty("taskName")
+  private String taskName = null;
 
-	/**
-	 * @param nextTaskId the nextTaskId to set
-	 */
-	public void setNextTaskId(String nextTaskId) {
-		this.nextTaskId = nextTaskId;
-	}
+  @JsonProperty("trackingId")
+  private String trackingId = null;
 
-	/**
-	 * @return the taskName
-	 */
-	public String getTaskName() {
-		return taskName;
-	}
+  public CommandResource links(List<Link> links) {
+    this.links = links;
+    return this;
+  }
 
-	/**
-	 * @param taskName the taskName to set
-	 */
-	public void setTaskName(String taskName) {
-		this.taskName = taskName;
-	}
+  public CommandResource addLinksItem(Link linksItem) {
+    if (this.links == null) {
+      this.links = new ArrayList<Link>();
+    }
+    this.links.add(linksItem);
+    return this;
+  }
 
-	@JsonProperty("status")
-	private String status = null;
+  /**
+   * Get links
+   * @return links
+  **/
+  @ApiModelProperty(value = "")
 
-	public CommandResource links(List<Link> links) {
-		this.links = links;
-		return this;
-	}
+  @Valid
 
-	public CommandResource addLinksItem(Link linksItem) {
-		if (this.links == null) {
-			this.links = new ArrayList<Link>();
-		}
-		this.links.add(linksItem);
-		return this;
-	}
+  public List<Link> getLinks() {
+    return links;
+  }
 
-	/**
-	 * Get links
-	 * 
-	 * @return links
-	 **/
-	@ApiModelProperty(value = "")
+  public void setLinks(List<Link> links) {
+    this.links = links;
+  }
 
-	@Valid
+  public CommandResource nextTaskId(String nextTaskId) {
+    this.nextTaskId = nextTaskId;
+    return this;
+  }
 
-	public List<Link> getLinks() {
-		return links;
-	}
+  /**
+   * Get nextTaskId
+   * @return nextTaskId
+  **/
+  @ApiModelProperty(value = "")
 
-	public void setLinks(List<Link> links) {
-		this.links = links;
-	}
 
-	public CommandResource status(String status) {
-		this.status = status;
-		return this;
-	}
+  public String getNextTaskId() {
+    return nextTaskId;
+  }
 
-	/**
-	 * Get status
-	 * 
-	 * @return status
-	 **/
-	@ApiModelProperty(value = "")
+  public void setNextTaskId(String nextTaskId) {
+    this.nextTaskId = nextTaskId;
+  }
 
-	public String getStatus() {
-		return status;
-	}
+  public CommandResource status(String status) {
+    this.status = status;
+    return this;
+  }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+  /**
+   * Get status
+   * @return status
+  **/
+  @ApiModelProperty(value = "")
 
-	@Override
-	public boolean equals(java.lang.Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		CommandResource commandResource = (CommandResource) o;
-		return Objects.equals(this.links, commandResource.links) && Objects.equals(this.status, commandResource.status);
-	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(links, status);
-	}
+  public String getStatus() {
+    return status;
+  }
 
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("class CommandResource {\n");
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
-		sb.append("    links: ").append(toIndentedString(links)).append("\n");
-		sb.append("    status: ").append(toIndentedString(status)).append("\n");
-		sb.append("}");
-		return sb.toString();
-	}
+  public CommandResource taskName(String taskName) {
+    this.taskName = taskName;
+    return this;
+  }
 
-	/**
-	 * Convert the given object to string with each line indented by 4 spaces
-	 * (except the first line).
-	 */
-	private String toIndentedString(java.lang.Object o) {
-		if (o == null) {
-			return "null";
-		}
-		return o.toString().replace("\n", "\n    ");
-	}
+  /**
+   * Get taskName
+   * @return taskName
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getTaskName() {
+    return taskName;
+  }
+
+  public void setTaskName(String taskName) {
+    this.taskName = taskName;
+  }
+
+  public CommandResource trackingId(String trackingId) {
+    this.trackingId = trackingId;
+    return this;
+  }
+
+  /**
+   * Get trackingId
+   * @return trackingId
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getTrackingId() {
+    return trackingId;
+  }
+
+  public void setTrackingId(String trackingId) {
+    this.trackingId = trackingId;
+  }
+
+
+  @Override
+  public boolean equals(java.lang.Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    CommandResource commandResource = (CommandResource) o;
+    return Objects.equals(this.links, commandResource.links) &&
+        Objects.equals(this.nextTaskId, commandResource.nextTaskId) &&
+        Objects.equals(this.status, commandResource.status) &&
+        Objects.equals(this.taskName, commandResource.taskName) &&
+        Objects.equals(this.trackingId, commandResource.trackingId);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(links, nextTaskId, status, taskName, trackingId);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class CommandResource {\n");
+    
+    sb.append("    links: ").append(toIndentedString(links)).append("\n");
+    sb.append("    nextTaskId: ").append(toIndentedString(nextTaskId)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    taskName: ").append(toIndentedString(taskName)).append("\n");
+    sb.append("    trackingId: ").append(toIndentedString(trackingId)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(java.lang.Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
 }
+

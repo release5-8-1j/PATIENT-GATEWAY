@@ -33,12 +33,15 @@
     },
     "generator-jhipster-swagger-cli": {
         "promptValues": {
-            "inputSpec": "http://35.237.4.7:9090/v2/api-docs",
-            "cliName": "payment"
+            "inputSpec": "http://35.229.27.47:8090/v2/api-docs",
+            "cliName": "appointment"
         },
         "apis": {
             "doctor": {
                 "spec": "http://localhost:8083/v2/api-docs"
+            },
+            "appointment": {
+                "spec": "http://35.229.27.47:8090/v2/api-docs"
             }
         }
     }

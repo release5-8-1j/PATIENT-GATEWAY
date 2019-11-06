@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * PatientInfo
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T11:23:29.803+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-06T12:46:25.612+05:30[Asia/Kolkata]")
 
 public class PatientInfo   {
   @JsonProperty("cachable")
@@ -27,6 +27,9 @@ public class PatientInfo   {
 
   @JsonProperty("patientId")
   private String patientId = null;
+
+  @JsonProperty("phoneCode")
+  private Long phoneCode = null;
 
   @JsonProperty("phoneNumber")
   private Long phoneNumber = null;
@@ -114,6 +117,26 @@ public class PatientInfo   {
     this.patientId = patientId;
   }
 
+  public PatientInfo phoneCode(Long phoneCode) {
+    this.phoneCode = phoneCode;
+    return this;
+  }
+
+  /**
+   * Get phoneCode
+   * @return phoneCode
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getPhoneCode() {
+    return phoneCode;
+  }
+
+  public void setPhoneCode(Long phoneCode) {
+    this.phoneCode = phoneCode;
+  }
+
   public PatientInfo phoneNumber(Long phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
@@ -168,13 +191,14 @@ public class PatientInfo   {
         Objects.equals(this.email, patientInfo.email) &&
         Objects.equals(this.firstName, patientInfo.firstName) &&
         Objects.equals(this.patientId, patientInfo.patientId) &&
+        Objects.equals(this.phoneCode, patientInfo.phoneCode) &&
         Objects.equals(this.phoneNumber, patientInfo.phoneNumber) &&
         Objects.equals(this.typeName, patientInfo.typeName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cachable, email, firstName, patientId, phoneNumber, typeName);
+    return Objects.hash(cachable, email, firstName, patientId, phoneCode, phoneNumber, typeName);
   }
 
   @Override
@@ -186,6 +210,7 @@ public class PatientInfo   {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    patientId: ").append(toIndentedString(patientId)).append("\n");
+    sb.append("    phoneCode: ").append(toIndentedString(phoneCode)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    typeName: ").append(toIndentedString(typeName)).append("\n");
     sb.append("}");

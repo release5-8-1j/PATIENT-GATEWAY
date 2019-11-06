@@ -1,14 +1,11 @@
 package com.bytatech.ayoos.client.appointment.model;
 
-import java.util.Date;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.time.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -17,22 +14,19 @@ import javax.validation.constraints.*;
  * Slot
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-16T11:23:29.803+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-06T12:46:25.612+05:30[Asia/Kolkata]")
 
 public class Slot   {
   @JsonProperty("day")
-  @JsonFormat(pattern = "MM-dd-yyyy" ,timezone="IST")
-  private Date day = null;
+  private OffsetDateTime day = null;
 
   @JsonProperty("endTime")
-  @JsonFormat(pattern = "hh:mm")
-  private Date endTime = null;
+  private OffsetDateTime endTime = null;
 
   @JsonProperty("startTime")
-  @JsonFormat(pattern = "hh:mm")
-  private Date startTime = null;
+  private OffsetDateTime startTime = null;
 
-  public Slot day(Date day) {
+  public Slot day(OffsetDateTime day) {
     this.day = day;
     return this;
   }
@@ -45,15 +39,15 @@ public class Slot   {
 
   @Valid
 
-  public Date getDay() {
+  public OffsetDateTime getDay() {
     return day;
   }
 
-  public void setDay(Date day) {
+  public void setDay(OffsetDateTime day) {
     this.day = day;
   }
 
-  public Slot endTime(Date endTime) {
+  public Slot endTime(OffsetDateTime endTime) {
     this.endTime = endTime;
     return this;
   }
@@ -66,15 +60,15 @@ public class Slot   {
 
   @Valid
 
-  public Date getEndTime() {
+  public OffsetDateTime getEndTime() {
     return endTime;
   }
 
-  public void setEndTime(Date endTime) {
+  public void setEndTime(OffsetDateTime endTime) {
     this.endTime = endTime;
   }
 
-  public Slot startTime(Date startTime) {
+  public Slot startTime(OffsetDateTime startTime) {
     this.startTime = startTime;
     return this;
   }
@@ -87,11 +81,11 @@ public class Slot   {
 
   @Valid
 
-  public Date getStartTime() {
+  public OffsetDateTime getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(Date startTime) {
+  public void setStartTime(OffsetDateTime startTime) {
     this.startTime = startTime;
   }
 
